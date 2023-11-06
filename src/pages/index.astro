@@ -1,11 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/pure/Header.astro";
+import Header from "../components/header/Header";
 import HeroSection from "../components/composite/HeroSection.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <Header />
+  <Header client:visible />
   <main>
     <HeroSection />
   </main>

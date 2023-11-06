@@ -1,0 +1,51 @@
+.toggle-menu {
+  width: 24px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: currentColor;
+}
+
+.toggle-menu i {
+  display: block;
+  position: absolute;
+  height: 2px;
+  background: currentColor;
+  width: 24px;
+  left: 0px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  z-index: 3;
+  opacity: 1;
+}
+
+.toggle-menu i:nth-child(1) {
+  top: 4px;
+}
+
+.toggle-menu i:nth-child(2) {
+  top: 10px;
+}
+
+.toggle-menu i:nth-child(3) {
+  top: 16px;
+}
+
+.toggle-menu.active i:nth-child(1) {
+  transform: rotate(-45deg);
+  top: 11px;
+}
+
+.toggle-menu.active i:nth-child(2) {
+  opacity: 0;
+}
+
+.toggle-menu.active i:nth-child(3) {
+  transform: rotateZ(45deg);
+  top: 11px;
+}
