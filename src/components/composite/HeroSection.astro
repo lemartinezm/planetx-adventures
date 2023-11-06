@@ -1,0 +1,127 @@
+<section class="hero-container" id="home">
+  <div class="hero-title-container">
+    <h2 class="hero-title">Your Adventure Begins Here!</h2>
+    <span class="hero-subtitle">Explore the Cosmic Frontiers</span>
+  </div>
+  <div class="hero-description-container">
+    <p class="hero-description">
+      Embark on an otherworldly journey, uncover the mysteries of uncharted
+      terrains, forge a deep connection with the cosmic wilderness, and ignite
+      your sense of wonder as you explore alien landscapes, navigate celestial
+      trails, and encounter the ethereal beauty of distant planets.
+    </p>
+    <button class="reserve-button">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        ><path
+          fill="currentColor"
+          d="m12.866 3l9.237 16H23v2H1v-2h.896l9.238-16a1 1 0 0 1 1.732 0ZM12 12.925L8.659 19h6.682L12 12.925Z"
+        ></path></svg
+      >
+      <span>Reserve a Spot</span>
+    </button>
+    <span class="hero-price">Starts at <strong>$499.99</strong> / night</span>
+  </div>
+</section>
+
+<style>
+  .hero-container {
+    height: 100vh;
+    width: 100vw;
+    background-image: url("../../assets/hero-3.jpg");
+    background-position: bottom center;
+    background-size: cover;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: relative;
+  }
+
+  .hero-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 90%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    z-index: -1;
+  }
+
+  .hero-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1.5;
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-description-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    gap: 1rem;
+  }
+
+  .hero-description {
+    text-wrap: balance;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.75);
+    text-align: center;
+    max-width: 30rem;
+  }
+
+  .reserve-button {
+    background-color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    border-radius: 2rem;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  .hero-price {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .hero-price strong {
+    color: white;
+  }
+</style>
