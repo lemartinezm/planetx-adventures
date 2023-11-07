@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import campingImage1 from "../../assets/camping-spot-1.jpg";
 import campingImage2 from "../../assets/camping-spot-2.jpg";
 import TentSvg from "../icons/tent/TentSvg.astro";
+import CampingMap from "../map/CampingMap";
 ---
 
 <section class="about-container" id="about">
@@ -28,7 +29,7 @@ import TentSvg from "../icons/tent/TentSvg.astro";
         <Image src={campingImage2} alt="Camping spot 2" width="150" />
       </div>
     </div>
-    <div>Mapa</div>
+    <CampingMap client:only />
   </div>
 </section>
 
@@ -44,6 +45,7 @@ import TentSvg from "../icons/tent/TentSvg.astro";
   .camping-spots-container {
     display: flex;
     flex-direction: column;
+    gap: 2rem;
   }
 
   .camping-spots-title {
