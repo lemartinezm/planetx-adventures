@@ -2,7 +2,6 @@
   height: 20rem;
   z-index: 0;
   background-color: transparent;
-  max-width: 25rem;
 }
 
 .map-container {
@@ -39,4 +38,15 @@
   background-color: transparent;
   color: white;
   border: none;
+}
+
+@media screen and (min-width: 1024px) {
+  #map {
+    height: 30rem;
+  }
+
+  .camping-map-container {
+    flex: 1;
+    height: 30rem;
+  }
 }

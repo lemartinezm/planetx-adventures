@@ -21,14 +21,13 @@ export default function CampingMap() {
       zoomControl: false,
       maxBounds: bounds,
       maxZoom: 2,
-      center: campingSpotsData[0].latLon,
     });
 
     L.imageOverlay("/map.jpg", bounds).addTo(map.current);
     L.control.zoom({ position: "topright" }).addTo(map.current);
     marker.current = L.marker(campingSpotsData[0].latLon).addTo(map.current);
     map.current.fitBounds(bounds);
-    map.current.panTo(campingSpotsData[0].latLon);
+    map.current.setView(campingSpotsData[0].latLon, 1);
 
     return () => {
       map.current?.remove();
