@@ -1,0 +1,155 @@
+---
+import { Image } from "astro:assets";
+import campingImage1 from "../../assets/camping-spot-1.jpg";
+import campingImage2 from "../../assets/camping-spot-2.jpg";
+import TentSvg from "../icons/tent/TentSvg.astro";
+import CampingMap from "../map/CampingMap";
+---
+
+<div class="camping-spots-background">
+  <div class="camping-spots-container">
+    <div class="camping-spots-description-container">
+      <TentSvg color="#3B445A" width="44" height="44" />
+      <h2 class="camping-spots-title">Explore Special Camping Spots</h2>
+      <p class="camping-spots-description">
+        Embark on an extraordinary odyssey of cosmic exploration as you venture
+        into the heart of uncharted frontiers with our interstellar camp
+        experiences.
+      </p>
+      <p class="camping-spots-description">
+        Whether you're a seasoned spacefarer or new to the wonders of off-world
+        camping, our expert guides will navigate you through a journey of cosmic
+        revelation, imparting their wisdom of extraterrestrial landscapes,
+        celestial phenomena, and interplanetary survival techniques. Prepare to
+        cultivate new connections, ignite your thirst for cosmic adventure, and
+        craft enduring memories amid the infinite wonders of the cosmos.
+      </p>
+      <div class="camping-spots-images-container">
+        <Image
+          src={campingImage1}
+          alt="Camping spot 1"
+          width="120"
+          height="120"
+          class="camping-image"
+        />
+        <Image
+          src={campingImage2}
+          alt="Camping spot 2"
+          width="120"
+          height="120"
+          class="camping-image"
+        />
+      </div>
+    </div>
+    <CampingMap client:only />
+    <div class="camping-discover-container">
+      <span class="camping-discover">Explore special camping spots</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .camping-spots-background {
+    background-color: #0b0e16;
+  }
+
+  .camping-spots-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 25rem;
+    margin: 5rem auto;
+    position: relative;
+    padding: 0 1rem;
+  }
+
+  .camping-spots-title {
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .camping-spots-description-container {
+    color: #7f889e;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .camping-spots-images-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .camping-image {
+    flex: 1;
+    object-fit: cover;
+    height: 100%;
+  }
+
+  .camping-discover-container {
+    max-width: 1440px;
+    padding: 0 2rem;
+    position: absolute;
+    top: 15vh;
+    right: -8rem;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .camping-discover {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  .camping-discover::before {
+    content: "";
+    width: 1px;
+    height: 8rem;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.75);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+  }
+
+  @media screen and (min-width: 768px) {
+    .camping-discover-container {
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .camping-spots-container {
+      flex-direction: row-reverse;
+      max-width: 1280px;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 8rem;
+      gap: 6rem;
+    }
+
+    .camping-spots-description-container {
+      flex: 1;
+    }
+
+    .camping-image {
+      flex: 0;
+      width: 150px;
+      height: 150px;
+    }
+
+    .camping-discover-container {
+      right: 0;
+    }
+  }
+</style>
