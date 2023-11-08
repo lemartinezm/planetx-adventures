@@ -6,53 +6,51 @@ import TentSvg from "../icons/tent/TentSvg.astro";
 import CampingMap from "../map/CampingMap";
 ---
 
-<div class="camping-spots-container">
-  <div class="camping-spots-description-container">
-    <TentSvg color="#3B445A" width="44" height="44" />
-    <h2 class="camping-spots-title">Explore Special Camping Spots</h2>
-    <p class="camping-spots-description">
-      Embark on an extraordinary odyssey of cosmic exploration as you venture
-      into the heart of uncharted frontiers with our interstellar camp
-      experiences.
-    </p>
-    <p class="camping-spots-description">
-      Whether you're a seasoned spacefarer or new to the wonders of off-world
-      camping, our expert guides will navigate you through a journey of cosmic
-      revelation, imparting their wisdom of extraterrestrial landscapes,
-      celestial phenomena, and interplanetary survival techniques. Prepare to
-      cultivate new connections, ignite your thirst for cosmic adventure, and
-      craft enduring memories amid the infinite wonders of the cosmos.
-    </p>
-    <div class="camping-spots-images-container">
-      <Image
-        src={campingImage1}
-        alt="Camping spot 1"
-        width="120"
-        height="120"
-        class="camping-image"
-      />
-      <Image
-        src={campingImage2}
-        alt="Camping spot 2"
-        width="120"
-        height="120"
-        class="camping-image"
-      />
+<div class="camping-spots-background">
+  <div class="camping-spots-container">
+    <div class="camping-spots-description-container">
+      <TentSvg color="#3B445A" width="44" height="44" />
+      <h2 class="camping-spots-title">Explore Special Camping Spots</h2>
+      <p class="camping-spots-description">
+        Embark on an extraordinary odyssey of cosmic exploration as you venture
+        into the heart of uncharted frontiers with our interstellar camp
+        experiences.
+      </p>
+      <p class="camping-spots-description">
+        Whether you're a seasoned spacefarer or new to the wonders of off-world
+        camping, our expert guides will navigate you through a journey of cosmic
+        revelation, imparting their wisdom of extraterrestrial landscapes,
+        celestial phenomena, and interplanetary survival techniques. Prepare to
+        cultivate new connections, ignite your thirst for cosmic adventure, and
+        craft enduring memories amid the infinite wonders of the cosmos.
+      </p>
+      <div class="camping-spots-images-container">
+        <Image
+          src={campingImage1}
+          alt="Camping spot 1"
+          width="120"
+          height="120"
+          class="camping-image"
+        />
+        <Image
+          src={campingImage2}
+          alt="Camping spot 2"
+          width="120"
+          height="120"
+          class="camping-image"
+        />
+      </div>
     </div>
-  </div>
-  <CampingMap client:only />
-  <div class="camping-discover-container">
-    <span class="camping-discover">Explore special camping spots</span>
+    <CampingMap client:only />
+    <div class="camping-discover-container">
+      <span class="camping-discover">Explore special camping spots</span>
+    </div>
   </div>
 </div>
 
 <style>
-  .about-container {
+  .camping-spots-background {
     background-color: #0b0e16;
-    width: 100%;
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: row;
   }
 
   .camping-spots-container {
@@ -60,8 +58,9 @@ import CampingMap from "../map/CampingMap";
     flex-direction: column;
     gap: 2rem;
     max-width: 25rem;
-    margin: 4rem auto;
+    margin: 5rem auto;
     position: relative;
+    padding: 0 1rem;
   }
 
   .camping-spots-title {
