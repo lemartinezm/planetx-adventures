@@ -37,21 +37,22 @@ import campGuide from "../../assets/camp-guide.jpg";
     <div class="discover-image-container">
       <Image
         src={animal1}
-        width="250"
-        height="250"
+        width="400"
+        height="400"
         alt="Animal portrait"
         class="discover-image"
       />
 
+      <!-- Border text -->
       <svg
-        width="250"
-        height="250"
+        width="400"
+        height="400"
         xmlns="http://www.w3.org/2000/svg"
         class="discover-circle-text"
       >
         <path
           id="myPath"
-          d="M 125, 0 A 125, 125 0 1, 1 125, 250 A 125, 125 0 1, 1 125, 0"
+          d="M 200, 0 A 200, 200 0 1, 1 200, 400 A 200, 200 0 1, 1 200, 0"
           fill="none"></path>
         <text>
           <textPath href="#myPath" startOffset="0%">
@@ -114,6 +115,10 @@ import campGuide from "../../assets/camp-guide.jpg";
         </svg>
       </button>
     </div>
+
+    <div class="discover-indicator-container">
+      <span class="discover-indicator">Explore Extraterrestrial Wonders</span>
+    </div>
   </div>
 </div>
 
@@ -126,7 +131,9 @@ import campGuide from "../../assets/camp-guide.jpg";
     padding: 0rem 1rem;
     margin: 2rem auto;
     display: grid;
-    row-gap: 4rem;
+    gap: 4rem;
+    max-width: 25rem;
+    position: relative;
   }
 
   .discover-description-container {
@@ -171,25 +178,31 @@ import campGuide from "../../assets/camp-guide.jpg";
     content: "";
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
     position: absolute;
     border-radius: 50%;
     border: none;
     background: radial-gradient(
       circle,
       transparent 0%,
-      transparent 40%,
+      transparent 80%,
       #282528 100%
     );
-    width: 250px;
-    height: 250px;
+    width: 25rem;
+    height: 25rem;
   }
 
   .discover-circle-text {
     position: absolute;
     overflow: visible;
+    margin: auto;
+    right: 0;
+    bottom: 0;
     top: 0;
     left: 0;
-    transform: rotateZ(-90deg);
+    transform: rotateZ(-70deg);
     fill: #706970;
     text-transform: uppercase;
     font-size: 0.75rem;
@@ -211,6 +224,7 @@ import campGuide from "../../assets/camp-guide.jpg";
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   .discover-testimony {
@@ -256,5 +270,78 @@ import campGuide from "../../assets/camp-guide.jpg";
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .discover-indicator-container {
+    max-width: 1440px;
+    padding: 0 2rem;
+    position: absolute;
+    bottom: 15vh;
+    left: -8rem;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .discover-indicator {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  .discover-indicator::before {
+    content: "";
+    width: 1px;
+    height: 8rem;
+    display: block;
+    background-color: rgba(255, 255, 255, 0.75);
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+  }
+
+  @media screen and (min-width: 768px) {
+    .discover-indicator-container {
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .discover-wildlife-container {
+      grid-template-columns: 1fr 1fr;
+      max-width: 1280px;
+      padding: 2rem 8rem;
+    }
+
+    .discover-image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .discover-article-container {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      flex-direction: row;
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+
+    .discover-next-container {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+
+    .discover-indicator-container {
+      left: 0;
+    }
   }
 </style>
