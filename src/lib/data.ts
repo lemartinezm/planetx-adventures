@@ -1,5 +1,7 @@
 import type { LatLngExpression } from "leaflet";
 import cardImage1 from "../assets/card-1.jpg";
+import cardImage2 from "../assets/card-2.jpg";
+import cardImage3 from "../assets/card-3.jpg";
 
 interface CampingSpot {
   id: number;
@@ -50,6 +52,28 @@ export const cardsData: CardData[] = [
     views: "1.8k",
     likes: "1.2k",
     price: "499.99",
+    priceUnit: "day",
+  },
+  {
+    image: cardImage2,
+    title: "Exclusive FrostPeaks Hike",
+    rating: 5,
+    description:
+      "Embark on a thrilling group trek through the majestic FrostPeaks. Whether you're an avid explorer or a nature enthusiast, our guided hikes promise an unforgettable adventure. Immerse yourself in the breathtaking snowy landscapes, forging connections with fellow adventurers. Your journey through the FrostPeaks is sure to create lasting memories of camaraderie and exploration.",
+    views: "1.2k",
+    likes: "500",
+    price: "899.99",
+    priceUnit: "person",
+  },
+  {
+    image: cardImage3,
+    title: "Zero-Gravity Sports Fusion",
+    rating: 4,
+    description:
+      "Experience sports in a whole new dimension with our zero-gravity session. Whether you're a seasoned athlete or a novice explorer, our reduced-gravity arena opens doors to a unique, high-flying experience. Engage in various sports, defy traditional gravity, and elevate your play to extraordinary heights. Join us for a cosmic sporting adventure that transcends earthly limits, where every move becomes a moment of cosmic triumph",
+    views: "5.4k",
+    likes: "3.1k",
+    price: "699.99",
     priceUnit: "person",
   },
 ];

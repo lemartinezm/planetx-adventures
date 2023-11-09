@@ -17,19 +17,29 @@ import EventCard from "../card/EventCard.astro";
   >
   <h2 class="events-title">Top Things to do in Camp</h2>
 
-  {cardsData.map((cardData) => <EventCard cardData={cardData} />)}
+  <div class="events-cards-container">
+    {cardsData.map((cardData) => <EventCard cardData={cardData} />)}
+  </div>
 </section>
 
 <style>
   .events-container {
-    padding: 4rem 1rem;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    max-width: 25rem;
+    margin: 4rem auto;
   }
 
   .events-title {
     font-size: 1.25rem;
     font-weight: 500;
+  }
+
+  .events-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
   }
 </style>
