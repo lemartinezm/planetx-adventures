@@ -106,4 +106,20 @@ const { cardData } = Astro.props;
   .event-card-info strong {
     color: black;
   }
+
+  @media screen and (min-width: 1024px) {
+    .event-card-container:nth-child(2n-1) {
+      flex-direction: row;
+      gap: 4rem;
+    }
+
+    .event-card-container:nth-child(2n) {
+      flex-direction: row-reverse;
+      gap: 4rem;
+    }
+
+    .event-card-description-container {
+      justify-content: center;
+    }
+  }
 </style>
