@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+import StarsRating from "../rating/StarsRating.astro";
+const { cardData } = Astro.props;
+---
+
+<article class="event-card-container">
+  <Image
+    src={cardData.image}
+    alt="Card image"
+    width="350"
+    height="350"
+    class="event-card-image"
+  />
+  <div class="event-card-description-container">
+    <div class="event-card-title-stars-container">
+      <h3 class="event-card-title">{cardData.title}</h3>
+      <StarsRating rating={cardData.rating} />
+    </div>
+
+    <p class="event-card-description">
+      {cardData.description}
+    </p>
+    <p class="event-card-views-likes">
+      {cardData.views} views &middot; {cardData.likes} likes
+    </p>
+    <div class="event-card-button-info-container">
+      <button class="event-card-button">See Details</button>
+      <p class="event-card-info">
+        Starts at <strong>${cardData.price}</strong> / {cardData.priceUnit}
+      </p>
+    </div>
+  </div>
+</article>
+
+<style>
+  .event-card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-card-image {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .event-card-description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-card-title-stars-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .event-card-title {
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  .event-card-description {
+    color: #616774;
+  }
+
+  .event-card-views-likes {
+    color: #616774;
+  }
+
+  .event-card-button-info-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .event-card-button {
+    background-color: transparent;
+    border: 1px solid #616774;
+    color: #616774;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      "Open Sans",
+      "Helvetica Neue",
+      sans-serif;
+  }
+
+  .event-card-info {
+    color: #616774;
+  }
+
+  .event-card-info strong {
+    color: black;
+  }
+</style>
