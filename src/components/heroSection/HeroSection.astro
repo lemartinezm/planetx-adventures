@@ -1,3 +1,7 @@
+---
+import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
+---
+
 <section class="hero-container" id="home">
   <div class="hero-title-container">
     <h2 class="hero-title">Your Adventure Begins Here!</h2>
@@ -26,9 +30,7 @@
     <span class="hero-price">Starts at <strong>$499.99</strong> / night</span>
   </div>
 
-  <div class="hero-camp-name-container">
-    <span class="hero-camp-name">FrostPeaks Base Camp</span>
-  </div>
+  <SectionIndicator name="FrostPeaks Base Camp" />
 </section>
 
 <style>
@@ -127,45 +129,5 @@
 
   .hero-price strong {
     color: var(--white);
-  }
-
-  .hero-camp-name-container {
-    max-width: 1440px;
-    padding: 0 2rem;
-    position: absolute;
-    bottom: 15vh;
-    left: 0;
-    margin: 0 auto;
-    display: none;
-  }
-
-  .hero-camp-name {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    color: var(--black-25);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 400;
-  }
-
-  .hero-camp-name::before {
-    content: "";
-    width: 1px;
-    height: 8rem;
-    display: block;
-    background-color: var(--black-25);
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-  }
-
-  @media screen and (min-width: 768px) {
-    .hero-camp-name-container {
-      display: block;
-    }
   }
 </style>

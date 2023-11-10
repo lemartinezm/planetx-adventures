@@ -1,6 +1,7 @@
 ---
 import { cardsData } from "../../lib/data";
 import EventCard from "../card/EventCard.astro";
+import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
 ---
 
 <section class="events-container" id="events">
@@ -20,6 +21,8 @@ import EventCard from "../card/EventCard.astro";
   <div class="events-cards-container">
     {cardsData.map((cardData) => <EventCard cardData={cardData} />)}
   </div>
+
+  <SectionIndicator name="Top Things to do in Camp" position="right" />
 </section>
 
 <style>
@@ -30,6 +33,7 @@ import EventCard from "../card/EventCard.astro";
     gap: 1rem;
     max-width: 25rem;
     margin: 0 auto;
+    position: relative;
   }
 
   .events-title {
