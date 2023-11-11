@@ -124,6 +124,12 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
 <style>
   .discover-wildlife-background {
     background-color: var(--brown);
+    background: radial-gradient(
+      circle at left 25% top 30%,
+      rgb(63, 59, 63) 0%,
+      rgba(40, 37, 40, 1) 40%,
+      rgba(40, 37, 40, 1) 100%
+    );
   }
 
   .discover-wildlife-container {
@@ -272,6 +278,15 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
   }
 
   @media screen and (min-width: 1024px) {
+    .discover-wildlife-background {
+      background-color: var(--brown);
+      background: radial-gradient(
+        circle at left 25% top 45%,
+        rgb(63, 59, 63) 0%,
+        rgba(40, 37, 40, 1) 40%,
+        rgba(40, 37, 40, 1) 100%
+      );
+    }
     .discover-wildlife-container {
       grid-template-columns: 1fr 1fr;
       max-width: 1280px;
