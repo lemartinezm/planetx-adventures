@@ -1,0 +1,77 @@
+---
+const { name, position, color = "var(--black-25)" } = Astro.props;
+---
+
+<div class={`indicator-container-abs ${position && "indicator-" + position}`}>
+  <div class="indicator-container-sticky">
+    <span class="indicator-name" style={{ color }}>{name}</span>
+  </div>
+</div>
+
+<style>
+  .indicator-container-abs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  .indicator-container-abs.indicator-left {
+    left: -8rem;
+    right: auto;
+  }
+
+  .indicator-container-abs.indicator-right {
+    right: -8rem;
+    left: auto;
+  }
+
+  .indicator-container-sticky {
+    max-width: 1440px;
+    padding: 5rem 2rem;
+    position: sticky;
+    top: 30%;
+    margin: 0 auto;
+    display: none;
+  }
+
+  .indicator-name {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: currentColor;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+
+  .indicator-name::before {
+    content: "";
+    width: 1px;
+    height: 8rem;
+    display: block;
+    background-color: currentColor;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+  }
+
+  @media screen and (min-width: 768px) {
+    .indicator-container-sticky {
+      display: block;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .indicator-container-abs.indicator-left {
+      left: 0;
+    }
+
+    .indicator-container-abs.indicator-right {
+      right: 0;
+    }
+  }
+</style>

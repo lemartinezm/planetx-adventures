@@ -1,3 +1,7 @@
+---
+import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
+---
+
 <section class="hero-container" id="home">
   <div class="hero-title-container">
     <h2 class="hero-title">Your Adventure Begins Here!</h2>
@@ -26,9 +30,7 @@
     <span class="hero-price">Starts at <strong>$499.99</strong> / night</span>
   </div>
 
-  <div class="hero-camp-name-container">
-    <span class="hero-camp-name">FrostPeaks Base Camp</span>
-  </div>
+  <SectionIndicator name="FrostPeaks Base Camp" />
 </section>
 
 <style>
@@ -38,8 +40,7 @@
     background-image: url("../../assets/hero-3.jpg");
     background-position: bottom center;
     background-size: cover;
-    color: white;
-    font-weight: 500;
+    color: var(--white);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,17 +51,15 @@
   .hero-container::after {
     content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    height: 100%;
+    height: 2rem;
     width: 100%;
     background: linear-gradient(
       to bottom,
       transparent 0%,
-      transparent 95%,
-      #0b0e16 100%
+      var(--dark-blue) 100%
     );
-    z-index: 0;
   }
 
   .hero-title-container {
@@ -74,6 +73,7 @@
 
   .hero-title {
     font-size: 1.25rem;
+    font-weight: 500;
   }
 
   .hero-subtitle {
@@ -91,14 +91,13 @@
 
   .hero-description {
     text-wrap: balance;
-    font-weight: 300;
-    color: rgba(255, 255, 255, 0.75);
     text-align: center;
     max-width: 30rem;
+    color: var(--black-25);
   }
 
   .reserve-button {
-    background-color: white;
+    background-color: var(--white);
     border: none;
     display: flex;
     justify-content: center;
@@ -121,53 +120,14 @@
     font-size: 1rem;
     font-weight: 500;
     margin-top: 1rem;
+    color: var(--black);
   }
 
   .hero-price {
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--black-25);
   }
 
   .hero-price strong {
-    color: white;
-  }
-
-  .hero-camp-name-container {
-    max-width: 1440px;
-    padding: 0 2rem;
-    position: absolute;
-    bottom: 15vh;
-    left: 0;
-    margin: 0 auto;
-    display: none;
-  }
-
-  .hero-camp-name {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    color: rgba(255, 255, 255, 0.75);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 400;
-  }
-
-  .hero-camp-name::before {
-    content: "";
-    width: 1px;
-    height: 8rem;
-    display: block;
-    background-color: rgba(255, 255, 255, 0.75);
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-  }
-
-  @media screen and (min-width: 768px) {
-    .hero-camp-name-container {
-      display: block;
-    }
+    color: var(--white);
   }
 </style>

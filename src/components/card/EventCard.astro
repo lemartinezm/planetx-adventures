@@ -60,14 +60,15 @@ const { cardData } = Astro.props;
   .event-card-title {
     font-weight: 500;
     font-size: 1.25rem;
+    color: var(--black);
   }
 
   .event-card-description {
-    color: #616774;
+    color: var(--black-75);
   }
 
   .event-card-views-likes {
-    color: #616774;
+    color: var(--black-75);
   }
 
   .event-card-button-info-container {
@@ -80,8 +81,9 @@ const { cardData } = Astro.props;
 
   .event-card-button {
     background-color: transparent;
-    border: 1px solid #616774;
-    color: #616774;
+    border: 1px solid var(--black);
+    color: var(--black);
+    font-weight: 500;
     padding: 1rem 2rem;
     border-radius: 2rem;
     font-size: 1rem;
@@ -100,11 +102,11 @@ const { cardData } = Astro.props;
   }
 
   .event-card-info {
-    color: #616774;
+    color: var(--black-75);
   }
 
   .event-card-info strong {
-    color: black;
+    color: var(--black);
   }
 
   @media screen and (min-width: 1024px) {

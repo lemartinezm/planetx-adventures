@@ -4,12 +4,13 @@ import campingImage1 from "../../assets/camping-spot-1.jpg";
 import campingImage2 from "../../assets/camping-spot-2.jpg";
 import TentSvg from "../icons/tent/TentSvg.astro";
 import CampingMap from "../map/CampingMap";
+import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
 ---
 
 <div class="camping-spots-background">
   <div class="camping-spots-container">
     <div class="camping-spots-description-container">
-      <TentSvg color="#3B445A" width="44" height="44" />
+      <TentSvg color="var(--black-50)" width="44" height="44" />
       <h2 class="camping-spots-title">Explore Special Camping Spots</h2>
       <p class="camping-spots-description">
         Embark on an extraordinary odyssey of cosmic exploration as you venture
@@ -42,15 +43,13 @@ import CampingMap from "../map/CampingMap";
       </div>
     </div>
     <CampingMap client:only />
-    <div class="camping-discover-container">
-      <span class="camping-discover">Explore special camping spots</span>
-    </div>
+    <SectionIndicator name="Explore special camping spots" position="right" />
   </div>
 </div>
 
 <style>
   .camping-spots-background {
-    background-color: #0b0e16;
+    background-color: var(--dark-blue);
   }
 
   .camping-spots-container {
@@ -64,13 +63,13 @@ import CampingMap from "../map/CampingMap";
   }
 
   .camping-spots-title {
-    color: white;
+    color: var(--white);
     font-size: 1.25rem;
     font-weight: 500;
   }
 
   .camping-spots-description-container {
-    color: #7f889e;
+    color: var(--black-25);
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -86,46 +85,6 @@ import CampingMap from "../map/CampingMap";
     flex: 1;
     object-fit: cover;
     height: 100%;
-  }
-
-  .camping-discover-container {
-    max-width: 1440px;
-    padding: 0 2rem;
-    position: absolute;
-    top: 15vh;
-    right: -8rem;
-    margin: 0 auto;
-    display: none;
-  }
-
-  .camping-discover {
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    color: rgba(255, 255, 255, 0.75);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    font-weight: 400;
-  }
-
-  .camping-discover::before {
-    content: "";
-    width: 1px;
-    height: 8rem;
-    display: block;
-    background-color: rgba(255, 255, 255, 0.75);
-    writing-mode: vertical-lr;
-    transform: rotate(180deg);
-  }
-
-  @media screen and (min-width: 768px) {
-    .camping-discover-container {
-      display: block;
-    }
   }
 
   @media screen and (min-width: 1024px) {
@@ -146,10 +105,6 @@ import CampingMap from "../map/CampingMap";
       flex: 0;
       width: 150px;
       height: 150px;
-    }
-
-    .camping-discover-container {
-      right: 0;
     }
   }
 </style>
