@@ -22,7 +22,11 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
     {cardsData.map((cardData) => <EventCard cardData={cardData} />)}
   </div>
 
-  <SectionIndicator name="Top Things to do in Camp" position="right" />
+  <SectionIndicator
+    name="Top Things to do in Camp"
+    position="right"
+    color="var(--black-50)"
+  />
 </section>
 
 <style>

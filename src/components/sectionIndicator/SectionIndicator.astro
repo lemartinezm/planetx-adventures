@@ -1,10 +1,10 @@
 ---
-const { name, position } = Astro.props;
+const { name, position, color = "var(--black-25)" } = Astro.props;
 ---
 
 <div class={`indicator-container-abs ${position && "indicator-" + position}`}>
   <div class="indicator-container-sticky">
-    <span class="indicator-name">{name}</span>
+    <span class="indicator-name" style={{ color }}>{name}</span>
   </div>
 </div>
 
@@ -43,7 +43,7 @@ const { name, position } = Astro.props;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    color: var(--black-25);
+    color: currentColor;
     text-transform: uppercase;
     font-size: 0.75rem;
     font-weight: 400;
@@ -54,7 +54,7 @@ const { name, position } = Astro.props;
     width: 1px;
     height: 8rem;
     display: block;
-    background-color: var(--black-25);
+    background-color: currentColor;
     writing-mode: vertical-lr;
     transform: rotate(180deg);
   }
