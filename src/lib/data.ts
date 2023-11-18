@@ -8,6 +8,7 @@ interface CampingSpot {
   place: string;
   campName: string;
   latLon: LatLngExpression;
+  stationCode: string;
 }
 
 export const campingSpotsData: CampingSpot[] = [
@@ -16,18 +17,21 @@ export const campingSpotsData: CampingSpot[] = [
     place: "Nagheds",
     campName: "FrostPeaks BaseCamp",
     latLon: [332, 172],
+    stationCode: "PLX NAG 101",
   },
   {
     id: 2,
     place: "Zarthol",
     campName: "Cosmic Aurora Outpost",
     latLon: [234, 465],
+    stationCode: "PLX ZAR 101",
   },
   {
     id: 3,
     place: "Pyokmart",
     campName: "ExploraTerra Base Camp",
     latLon: [93, 349],
+    stationCode: "PLX PYO 101",
   },
 ];
 
@@ -76,4 +80,56 @@ export const cardsData: CardData[] = [
     price: "699.99",
     priceUnit: "person",
   },
+];
+
+interface TravelFrom {
+  id: number;
+  place: string;
+  stationCode: string;
+}
+
+export const travelFrom: TravelFrom[] = [
+  {
+    id: 1,
+    place: "Tisa",
+    stationCode: "ETH TIS 101",
+  },
+  {
+    id: 2,
+    place: "Lima",
+    stationCode: "ETH LIM 101",
+  },
+  {
+    id: 3,
+    place: "Tokyo",
+    stationCode: "ETH TOK 101",
+  },
+  {
+    id: 4,
+    place: "Paris",
+    stationCode: "ETH PAR 101",
+  },
+];
+
+export const seatsList = [
+  { code: "A1", window: true },
+  { code: "A2", window: false },
+  { code: "B1", window: true },
+  { code: "B2", window: false },
+  { code: "C1", window: true },
+  { code: "C2", window: false },
+  { code: "D1", window: true },
+  { code: "D2", window: false },
+  { code: "E1", window: true },
+  { code: "E2", window: false },
+  { code: "A3", window: false },
+  { code: "A4", window: true },
+  { code: "B3", window: false },
+  { code: "B4", window: true },
+  { code: "C3", window: false },
+  { code: "C4", window: true },
+  { code: "D3", window: false },
+  { code: "D4", window: true },
+  { code: "E3", window: false },
+  { code: "E4", window: true },
 ];
