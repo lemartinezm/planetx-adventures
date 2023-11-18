@@ -1,0 +1,46 @@
+<div class="stepper-container">
+  <div class="stepper-item stepper-item-active">
+    <div class="stepper-line"></div>
+    <div class="stepper-content">Travel info</div>
+  </div>
+
+  <div class="stepper-item">
+    <div class="stepper-line"></div>
+    <div class="stepper-content">Seat selection</div>
+  </div>
+
+  <div class="stepper-item">
+    <div class="stepper-line"></div>
+    <div class="stepper-content">Your ticket</div>
+  </div>
+</div>
+
+<style>
+  .stepper-container {
+    color: var(--white);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+
+  .stepper-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    color: var(--black-50);
+  }
+
+  .stepper-line {
+    width: 100%;
+    height: 2px;
+    border-radius: 2rem;
+    background-color: currentColor;
+  }
+
+  .stepper-item-active {
+    color: var(--light-blue);
+  }
+</style>

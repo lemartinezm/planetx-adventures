@@ -1,0 +1,261 @@
+---
+import { Image } from "astro:assets";
+import logoPlanetX from "../../assets/logo-planetx.png";
+---
+
+<!-- main Atropos container (required), add your custom class here -->
+<div class="atropos my-atropos">
+  <!-- scale container (required) -->
+  <div class="atropos-scale">
+    <!-- rotate container (required) -->
+    <div class="atropos-rotate">
+      <!-- inner container (required) -->
+      <div class="atropos-inner">
+        <article class="ticket-container">
+          <header class="ticket-header">
+            <div class="ticket-logo-container">
+              <Image
+                class="ticket-logo"
+                src={logoPlanetX}
+                alt="PlanetX Logo"
+                width="48"
+                height="48"
+              />
+            </div>
+            <div class="ticket-title-container">
+              <h3 class="ticket-title">Reservation Ticket</h3>
+            </div>
+          </header>
+          <div class="ticket-body-container">
+            <div class="ticket-body-name-container">
+              <div class="ticket-name-container">
+                <div class="ticket-name-label ticket-label">Name</div>
+                <div class="ticket-data ticket-data-md">Marty McFly</div>
+              </div>
+              <div class="ticket-grid-group-3">
+                <div>
+                  <div class="ticket-label">Flight</div>
+                  <div class="ticket-data">AK 104</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Boarding Time</div>
+                  <div class="ticket-data">19:00</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Date of Departure</div>
+                  <div class="ticket-data">24th July</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Gate</div>
+                  <div class="ticket-data">Z41</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Zone</div>
+                  <div class="ticket-data">A</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Destiny</div>
+                  <div class="ticket-data">PlanetX</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-seat-container">
+              <div class="ticket-grid-group-2">
+                <div>
+                  <div class="ticket-label">Seat</div>
+                  <div class="ticket-data ticket-data-md">A14</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Window</div>
+                  <div class="ticket-data ticket-data-md">No</div>
+                </div>
+                <div>
+                  <div class="ticket-label">From</div>
+                  <div class="ticket-data">ETH JK 101</div>
+                </div>
+                <div>
+                  <div class="ticket-label ticket-to-label">To</div>
+                  <div class="ticket-data ticket-to">PLX FP 102</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Departing Time</div>
+                  <div class="ticket-data">19:45</div>
+                </div>
+                <div>
+                  <div class="ticket-label">Luggage Code</div>
+                  <div class="ticket-data">1456</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ticket-qr-container">
+              <canvas id="qr-canvas"></canvas>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import "atropos/css";
+  import Atropos from "atropos";
+  import QRCode from "qrcode";
+
+  const myAtropos = Atropos({
+    el: ".my-atropos",
+  });
+
+  const qrCanvas = document.getElementById("qr-canvas");
+
+  QRCode.toCanvas(
+    qrCanvas,
+    "https://timeless-brews.vercel.app",
+    function (error) {
+      if (error) console.error(error);
+      console.log("success!");
+    },
+  );
+</script>
+
+<style>
+  .ticket-container {
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: 2rem;
+    overflow: hidden;
+  }
+
+  .ticket-header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .ticket-logo-container {
+    background-color: var(--green);
+    padding: 0.25rem 1rem;
+  }
+
+  .ticket-title-container {
+    background-color: var(--black);
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticket-title {
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 1rem;
+  }
+
+  .ticket-body-container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-body-name-container {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--black-25);
+    padding: 2rem 1rem;
+    gap: 1rem;
+    background-image: url("../../assets/person-walking.svg");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 64px 64px;
+  }
+
+  .ticket-grid-group-3 {
+    display: grid;
+    grid-template-columns: 0.75fr 1fr 1fr;
+    gap: 1rem 0.5rem;
+  }
+
+  .ticket-grid-group-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 0.5rem;
+  }
+
+  .ticket-label {
+    font-size: 0.7rem;
+    color: var(--black-75);
+    font-weight: 700;
+  }
+
+  .ticket-data {
+    font-size: 1rem;
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .ticket-name-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ticket-data-md {
+    font-size: 1.25rem;
+  }
+
+  .ticket-seat-container {
+    padding: 2rem 1rem;
+    border-bottom: 1px solid var(--black-25);
+    background-image: url("../../assets/rocket.svg");
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    background-size: 64px 64px;
+  }
+
+  .ticket-qr-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+
+  .ticket-from-container {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .ticket-logo-container {
+      padding: 0.25rem 2rem;
+    }
+
+    .ticket-title {
+      margin-left: 2rem;
+    }
+
+    .ticket-body-container {
+      grid-template-columns: 1fr 1fr auto;
+    }
+
+    .ticket-body-name-container,
+    .ticket-seat-container,
+    .ticket-qr-container {
+      border: none;
+      gap: 2rem;
+      background-size: 6.25rem 6.25rem;
+    }
+
+    .ticket-body-name-container,
+    .ticket-seat-container {
+      border-right: 1px solid var(--black-25);
+      padding: 2rem;
+    }
+
+    .ticket-grid-group-3,
+    .ticket-grid-group-2 {
+      row-gap: 2rem;
+    }
+
+    .ticket-seat-container {
+      height: 100%;
+    }
+  }
+</style>

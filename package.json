@@ -15,13 +15,16 @@
     "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
     "astro": "^3.4.3",
+    "atropos": "^2.0.2",
     "leaflet": "^1.9.4",
+    "qrcode": "^1.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.7",
+    "@types/qrcode": "^1.5.5",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.1"
   }

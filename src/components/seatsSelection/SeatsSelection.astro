@@ -1,0 +1,135 @@
+---
+import { seatsList } from "../../lib/data";
+const seatsLeftSide = seatsList.slice(0, seatsList.length / 2);
+const seatsRightSide = seatsList.slice(seatsList.length / 2);
+---
+
+<div class="spaceship">
+  <div class="cockpit"></div>
+
+  <div class="seats-selection">
+    <div class="seats-exit-signal-container">
+      <div class="seats-exit-signal seats-exit-signal-left">Exit</div>
+    </div>
+    <div class="seats-exit-signal-container">
+      <div class="seats-exit-signal seats-exit-signal-right">Exit</div>
+    </div>
+    <div class="seats-side-container">
+      {
+        seatsLeftSide.map((seat) => (
+          <label>
+            <input
+              class="seat-input-radio"
+              type="radio"
+              name="seat"
+              id={seat.code}
+            />
+            <svg
+              class="seat-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M4 18v3h3v-3h10v3h3v-6H4v3m15-8h3v3h-3v-3M2 10h3v3H2v-3m15 3H7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8Z"
+              />
+            </svg>
+          </label>
+        ))
+      }
+    </div>
+
+    <div class="seats-side-container">
+      {
+        seatsRightSide.map((seat) => (
+          <label>
+            <input
+              class="seat-input-radio"
+              type="radio"
+              name="seat"
+              id={seat.code}
+            />
+            <svg
+              class="seat-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M4 18v3h3v-3h10v3h3v-6H4v3m15-8h3v3h-3v-3M2 10h3v3H2v-3m15 3H7V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v8Z"
+              />
+            </svg>
+          </label>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  .spaceship {
+    margin: 2rem auto;
+  }
+
+  .cockpit {
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    border: 0.25rem solid var(--black-50);
+    border-radius: 50rem 50rem 0 0;
+    display: grid;
+    align-items: center;
+    color: var(--white);
+  }
+
+  .seats-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 4rem;
+    border: 0.25rem solid var(--black-50);
+  }
+
+  .seats-exit-signal-container {
+    display: grid;
+  }
+
+  .seats-exit-signal {
+    background-color: var(--green);
+    width: fit-content;
+    padding: 0.125rem 0.5rem;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 500;
+    margin: 1rem 0;
+  }
+
+  .seats-exit-signal-left {
+    justify-self: flex-start;
+  }
+
+  .seats-exit-signal-right {
+    justify-self: flex-end;
+  }
+
+  .seats-side-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .seat-input-radio {
+    display: none;
+  }
+
+  .seat-svg {
+    color: var(--black-50);
+  }
+
+  .seat-input-radio:checked ~ .seat-svg {
+    color: var(--light-blue);
+  }
+</style>
