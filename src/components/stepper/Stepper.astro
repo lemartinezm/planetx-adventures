@@ -1,7 +1,6 @@
 ---
 import ReservationForm from "../reservationForm/ReservationForm.astro";
 import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
-import Ticket from "../ticket/Ticket.astro";
 ---
 
 <div class="stepper-container">
@@ -14,30 +13,21 @@ import Ticket from "../ticket/Ticket.astro";
     <div class="stepper-line"></div>
     <div class="stepper-title">Seat selection</div>
   </div>
-
-  <div class="stepper-item">
-    <div class="stepper-line"></div>
-    <div class="stepper-title">Your ticket</div>
-  </div>
 </div>
 
 <div class="step-content step-1 step-active">
   <ReservationForm />
+  <a id="next-step-button" class="button button-primary">Next</a>
 </div>
 <div class="step-content step-2">
   <SeatsSelection />
-</div>
-<div class="step-content step-3">
-  <Ticket />
-</div>
-
-<div class="buttons-container">
+  <a id="next-step-button" class="button button-primary">Generate Ticket</a>
   <a id="back-step-button" class="button">Back</a>
-  <a id="next-step-button" class="button">Next</a>
 </div>
 
 <script>
   const steps = document.querySelectorAll(".step-content");
+  const stepperItems = document.querySelectorAll(".stepper-item");
   const nextButton = document.getElementById("next-step-button");
   const backButton = document.getElementById("back-step-button");
 
@@ -59,11 +49,13 @@ import Ticket from "../ticket/Ticket.astro";
   }
 
   function changeStep(currentStep: number) {
-    steps.forEach((step, key) => {
-      if (key === currentStep - 1) {
+    steps.forEach((step, index) => {
+      if (index === currentStep - 1) {
         step.classList.add("step-active");
+        stepperItems[index].classList.add("stepper-item-active");
       } else {
         step.classList.remove("step-active");
+        stepperItems[index].classList.remove("stepper-item-active");
       }
     });
 
@@ -75,7 +67,7 @@ import Ticket from "../ticket/Ticket.astro";
   }
 
   function nextStep() {
-    if (currentStep === 3) return;
+    if (currentStep === 2) return;
     currentStep++;
     changeStep(currentStep);
   }
@@ -94,7 +86,6 @@ import Ticket from "../ticket/Ticket.astro";
     flex-direction: row;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0 1rem;
   }
 
   .stepper-item {
@@ -123,14 +114,16 @@ import Ticket from "../ticket/Ticket.astro";
   }
 
   .step-active {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
   }
 
   .buttons-container {
     display: flex;
     gap: 2rem;
     justify-content: center;
-    margin-bottom: 4rem;
   }
 
   .button {
@@ -141,5 +134,12 @@ import Ticket from "../ticket/Ticket.astro";
     border-radius: 2rem;
     width: fit-content;
     text-align: center;
+  }
+
+  .button-primary {
+    background-color: var(--white);
+    color: var(--black);
+    font-weight: 500;
+    border: none;
   }
 </style>
