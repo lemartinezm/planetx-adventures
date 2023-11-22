@@ -1,19 +1,88 @@
+---
+import ReservationForm from "../reservationForm/ReservationForm.astro";
+import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
+---
+
 <div class="stepper-container">
   <div class="stepper-item stepper-item-active">
     <div class="stepper-line"></div>
-    <div class="stepper-content">Travel info</div>
+    <div class="stepper-title">Travel info</div>
   </div>
 
   <div class="stepper-item">
     <div class="stepper-line"></div>
-    <div class="stepper-content">Seat selection</div>
-  </div>
-
-  <div class="stepper-item">
-    <div class="stepper-line"></div>
-    <div class="stepper-content">Your ticket</div>
+    <div class="stepper-title">Seat selection</div>
   </div>
 </div>
+
+<div class="step-content step-1 step-active">
+  <ReservationForm />
+  <!-- <button id="next-step-button" class="button button-primary">Next</button> -->
+</div>
+<div class="step-content step-2">
+  <SeatsSelection />
+  <button id="generate-ticket-button" class="button button-primary"
+    >Generate Ticket</button
+  >
+  <a id="back-step-button" class="button">Back</a>
+</div>
+
+<script>
+  const steps = document.querySelectorAll(".step-content");
+  const stepperItems = document.querySelectorAll(".stepper-item");
+  const backButton = document.getElementById("back-step-button");
+  const travelInfoForm = document.getElementById("travel-info-form");
+
+  let currentStep = getStepQueryParams();
+  changeStep(currentStep);
+
+  travelInfoForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const target = event.target as HTMLFormElement;
+    const isValid = target.checkValidity();
+    if (isValid) nextStep();
+  });
+
+  backButton?.addEventListener("click", () => {
+    prevStep();
+  });
+
+  function getStepQueryParams() {
+    const queryParams = new URLSearchParams(window.location.search);
+    const currentStepQuery = queryParams.get("step");
+    return currentStepQuery ? Number(currentStepQuery) : 1;
+  }
+
+  function changeStep(currentStep: number) {
+    steps.forEach((step, index) => {
+      if (index === currentStep - 1) {
+        step.classList.add("step-active");
+        stepperItems[index].classList.add("stepper-item-active");
+      } else {
+        step.classList.remove("step-active");
+        stepperItems[index].classList.remove("stepper-item-active");
+      }
+    });
+
+    history.replaceState(
+      { step: currentStep },
+      `step-${currentStep}`,
+      window.location.pathname + `?step=${currentStep}`,
+    );
+  }
+
+  function nextStep() {
+    if (currentStep === 2) return;
+    currentStep++;
+    changeStep(currentStep);
+  }
+
+  function prevStep() {
+    if (currentStep === 1) return;
+    currentStep--;
+    changeStep(currentStep);
+  }
+</script>
 
 <style>
   .stepper-container {
@@ -22,7 +91,6 @@
     flex-direction: row;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0 1rem;
   }
 
   .stepper-item {
@@ -42,5 +110,41 @@
 
   .stepper-item-active {
     color: var(--light-blue);
+  }
+
+  .step-content {
+    display: none;
+    align-self: center;
+    width: 100%;
+  }
+
+  .step-active {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .button {
+    border: 1px solid var(--black-50);
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    color: var(--white);
+    border-radius: 2rem;
+    width: fit-content;
+    text-align: center;
+  }
+
+  .button-primary {
+    background-color: var(--white);
+    color: var(--black);
+    font-weight: 500;
+    border: none;
   }
 </style>

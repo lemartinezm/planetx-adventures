@@ -2,10 +2,10 @@
 import { travelFrom, campingSpotsData } from "../../lib/data";
 ---
 
-<form class="reservation-form">
+<form class="reservation-form" id="travel-info-form">
   <div class="form-input-container">
     <label class="form-label" for="name">Name</label>
-    <input class="form-input" type="text" name="name" id="name" />
+    <input class="form-input" type="text" name="name" id="name" required />
   </div>
   <div class="form-input-container">
     <label class="form-label" for="reservation-date">Date of Departure</label>
@@ -14,11 +14,13 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
       type="date"
       name="reservation-date"
       id="reservation-date"
+      min="2025-03-01"
+      required
     />
   </div>
   <div class="form-input-container">
     <label class="form-label" for="travel-to">Camp</label>
-    <select class="form-input" name="travel-to" id="travel-to">
+    <select class="form-input" name="travel-to" id="travel-to" required>
       {
         campingSpotsData.map((item) => (
           <option value={item.stationCode}>{item.campName}</option>
@@ -28,7 +30,7 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
   </div>
   <div class="form-input-container">
     <label class="form-label" for="travel-from">From</label>
-    <select class="form-input" name="travel-from" id="travel-from">
+    <select class="form-input" name="travel-from" id="travel-from" required>
       {
         travelFrom.map((item) => (
           <option value={item.stationCode}>{item.place}</option>
@@ -36,6 +38,10 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
       }
     </select>
   </div>
+
+  <button id="next-step-button" class="button button-primary" type="submit">
+    Next Step
+  </button>
 </form>
 
 <style>
@@ -49,10 +55,10 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    background-color: var(--black);
     width: 100%;
-    padding: 1rem;
     border-radius: 2rem;
+    max-width: 30rem;
+    margin: 1rem auto;
   }
 
   .form-input-container {
@@ -73,5 +79,30 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
     padding: 0.5rem 1rem;
     font-size: 1rem;
     color: var(--white);
+  }
+
+  #reservation-date::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+  }
+
+  .button {
+    border: 1px solid var(--black-50);
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    color: var(--white);
+    border-radius: 2rem;
+    width: fit-content;
+    text-align: center;
+  }
+
+  .button-primary {
+    background-color: var(--white);
+    color: var(--black);
+    font-weight: 500;
+    border: none;
+  }
+
+  #next-step-button {
+    align-self: center;
   }
 </style>

@@ -5,7 +5,7 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
 ---
 
 <div class="spaceship">
-  <div class="cockpit"></div>
+  <div class="cockpit">Rocket</div>
 
   <div class="seats-selection">
     <div class="seats-exit-signal-container">
@@ -17,7 +17,7 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
     <div class="seats-side-container">
       {
         seatsLeftSide.map((seat) => (
-          <label>
+          <label class="seat-selector">
             <input
               class="seat-input-radio"
               type="radio"
@@ -27,8 +27,8 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
             <svg
               class="seat-svg"
               xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="48"
+              width="40"
+              height="40"
               viewBox="0 0 24 24"
             >
               <path
@@ -44,7 +44,7 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
     <div class="seats-side-container">
       {
         seatsRightSide.map((seat) => (
-          <label>
+          <label class="seat-selector">
             <input
               class="seat-input-radio"
               type="radio"
@@ -54,8 +54,8 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
             <svg
               class="seat-svg"
               xmlns="http://www.w3.org/2000/svg"
-              width="48"
-              height="48"
+              width="40"
+              height="40"
               viewBox="0 0 24 24"
             >
               <path
@@ -72,11 +72,13 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
 
 <style>
   .spaceship {
-    margin: 2rem auto;
+    max-width: 20rem;
+    margin: 0 auto;
+    width: 100%;
   }
 
   .cockpit {
-    height: 150px;
+    height: 5rem;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -85,6 +87,7 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
     display: grid;
     align-items: center;
     color: var(--white);
+    font-size: 1.25rem;
   }
 
   .seats-selection {
@@ -131,5 +134,9 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
 
   .seat-input-radio:checked ~ .seat-svg {
     color: var(--light-blue);
+  }
+
+  .seat-selector {
+    justify-self: center;
   }
 </style>
