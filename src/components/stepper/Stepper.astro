@@ -17,25 +17,30 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
 
 <div class="step-content step-1 step-active">
   <ReservationForm />
-  <a id="next-step-button" class="button button-primary">Next</a>
+  <!-- <button id="next-step-button" class="button button-primary">Next</button> -->
 </div>
 <div class="step-content step-2">
   <SeatsSelection />
-  <a id="next-step-button" class="button button-primary">Generate Ticket</a>
+  <button id="generate-ticket-button" class="button button-primary"
+    >Generate Ticket</button
+  >
   <a id="back-step-button" class="button">Back</a>
 </div>
 
 <script>
   const steps = document.querySelectorAll(".step-content");
   const stepperItems = document.querySelectorAll(".stepper-item");
-  const nextButton = document.getElementById("next-step-button");
   const backButton = document.getElementById("back-step-button");
+  const travelInfoForm = document.getElementById("travel-info-form");
 
   let currentStep = getStepQueryParams();
   changeStep(currentStep);
 
-  nextButton?.addEventListener("click", () => {
-    nextStep();
+  travelInfoForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const target = event.target as HTMLFormElement;
+    const isValid = target.checkValidity();
+    if (isValid) nextStep();
   });
 
   backButton?.addEventListener("click", () => {
