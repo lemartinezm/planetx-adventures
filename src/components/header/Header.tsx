@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="header-container">
       <h1 className="header-title">
-        <a href="#home">PlanetX Adventures</a>
+        <a href="/#home">PlanetX Adventures</a>
       </h1>
       <nav className="header-navbar">
         <ul
@@ -17,7 +17,7 @@ export default function Header() {
         >
           <li>
             <a
-              href="#about"
+              href="/#about"
               onClick={() => setIsOpenNavbar(false)}
               className="navlink"
             >
@@ -26,7 +26,7 @@ export default function Header() {
           </li>
           <li>
             <a
-              href="#events"
+              href="/#events"
               onClick={() => setIsOpenNavbar(false)}
               className="navlink"
             >

@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+const { src, alt, name } = Astro.props;
+---
+
+<article class="animal-card-container">
+  <Image
+    src={src}
+    alt={alt}
+    class="animal-card-image"
+    width="300"
+    height="300"
+  />
+  <h3 class="animal-card-title">{name}</h3>
+</article>
+
+<style>
+  .animal-card-container {
+    position: relative;
+    border-radius: 2rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    max-width: 22rem;
+    justify-self: center;
+  }
+
+  .animal-card-image {
+    object-fit: cover;
+    width: 100%;
+    transition: scale 0.2s;
+  }
+
+  .animal-card-title {
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--white);
+    position: absolute;
+    bottom: 1rem;
+    left: auto;
+    right: auto;
+  }
+
+  .animal-card-container:hover .animal-card-image {
+    scale: 1.1;
+  }
+</style>
