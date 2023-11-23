@@ -16,6 +16,7 @@ export default function MenuSvg({
     <button
       className={isOpen ? `${currentClassName} active` : currentClassName}
       onClick={onClick}
+      aria-label="Toggle menu"
     >
       <i></i>
       <i></i>
