@@ -23,7 +23,7 @@ export default function CampingMap() {
       maxZoom: 2,
     });
 
-    L.imageOverlay("/map.jpg", bounds).addTo(map.current);
+    L.imageOverlay("/map.webp", bounds).addTo(map.current);
     L.control.zoom({ position: "topright" }).addTo(map.current);
     marker.current = L.marker(campingSpotsData[0].latLon).addTo(map.current);
     map.current.fitBounds(bounds);
