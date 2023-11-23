@@ -72,7 +72,7 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
 
 <style>
   .spaceship {
-    max-width: 20rem;
+    max-width: 16rem;
     margin: 0 auto;
     width: 100%;
   }
@@ -130,6 +130,7 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
 
   .seat-svg {
     color: var(--black-50);
+    transition: color 0.2s;
   }
 
   .seat-input-radio:checked ~ .seat-svg {
@@ -138,5 +139,10 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
 
   .seat-selector {
     justify-self: center;
+    cursor: pointer;
+  }
+
+  .seat-selector:hover .seat-svg {
+    color: var(--light-blue);
   }
 </style>

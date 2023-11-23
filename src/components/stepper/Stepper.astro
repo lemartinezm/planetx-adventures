@@ -17,13 +17,12 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
 
 <div class="step-content step-1 step-active">
   <ReservationForm />
-  <!-- <button id="next-step-button" class="button button-primary">Next</button> -->
 </div>
 <div class="step-content step-2">
   <SeatsSelection />
-  <button id="generate-ticket-button" class="button button-primary"
-    >Generate Ticket</button
-  >
+  <button id="generate-ticket-button" class="button button-primary">
+    Generate Ticket
+  </button>
   <a id="back-step-button" class="button">Back</a>
 </div>
 
@@ -133,12 +132,13 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
 
   .button {
     border: 1px solid var(--black-50);
-    padding: 0.5rem 2rem;
+    padding: 0.75rem 1.5rem;
     cursor: pointer;
     color: var(--white);
     border-radius: 2rem;
     width: fit-content;
     text-align: center;
+    font-size: 1rem;
   }
 
   .button-primary {
