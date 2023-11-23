@@ -34,8 +34,8 @@ export default function Header() {
             </a>
           </li>
           <li>
-            <a href="/sign" className="navlink signin">
-              Sign in
+            <a href="/reservations" className="navlink signin">
+              Tickets
             </a>
           </li>
         </ul>

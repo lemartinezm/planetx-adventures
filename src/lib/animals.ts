@@ -10,7 +10,6 @@ import animalImage9 from "../assets/animal-9.jpg";
 import animalImage10 from "../assets/animal-10.jpg";
 import animalImage11 from "../assets/animal-11.jpg";
 import animalImage12 from "../assets/animal-12.jpg";
-import animalImage13 from "../assets/animal-13.jpg";
 
 export const animals = [
   {
