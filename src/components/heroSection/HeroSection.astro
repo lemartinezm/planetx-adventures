@@ -121,6 +121,16 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
     font-weight: 500;
     margin-top: 1rem;
     color: var(--black);
+    box-shadow: 0 0 0 0 var(--light-blue);
+    transition:
+      background-color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .reserve-button:hover {
+    cursor: pointer;
+    background-color: var(--light-blue);
+    box-shadow: 0 0 8px 1px var(--light-blue);
   }
 
   .hero-price {

@@ -32,7 +32,7 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
         gracefully through the radiant flora of distant worlds, or marvel at the
         ethereal flight of creatures gliding through the celestial expanse.
       </p>
-      <button class="discover-button">Show All Animals</button>
+      <a href="/animals" class="discover-button">Show All Animals</a>
     </div>
 
     <div class="discover-image-container">
@@ -87,7 +87,11 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
     <div class="discover-next-container">
       <p class="discover-next-text">Why We're Special?</p>
 
-      <a href="#visit-info" class="discover-next-button">
+      <a
+        href="#visit-info"
+        class="discover-next-button"
+        aria-label="View visit info"
+      >
         <svg
           class="discover-next-button-arrow"
           xmlns="http://www.w3.org/2000/svg"
@@ -166,6 +170,18 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
     border-radius: 2rem;
     margin-top: 1rem;
     width: fit-content;
+    box-shadow: 0 0 0 0 var(--white);
+    font-weight: 500;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
+  }
+
+  .discover-button:hover {
+    background-color: var(--white);
+    color: var(--black);
+    box-shadow: 0 0 8px 1px var(--white);
   }
 
   .discover-image-container {

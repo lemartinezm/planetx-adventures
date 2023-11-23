@@ -62,11 +62,15 @@ export default function CampingMap() {
         <p className="camping-map-name">{currentSpot.campName}</p>
       </hgroup>
       <div className="camping-selectors-container">
-        <button className="camping-selector" onClick={handlePreviusCamp}>
+        <button
+          className="camping-selector"
+          onClick={handlePreviusCamp}
+          aria-label="Previous camping spot"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={20}
-            height={20}
+            width={28}
+            height={28}
             viewBox={"0 0 256 256"}
             color={"currentColor"}
           >
@@ -76,11 +80,15 @@ export default function CampingMap() {
             ></path>
           </svg>
         </button>
-        <button className="camping-selector" onClick={handleNextCamp}>
+        <button
+          className="camping-selector"
+          onClick={handleNextCamp}
+          aria-label="Next camping spot"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width={20}
-            height={20}
+            width={28}
+            height={28}
             viewBox={"0 0 256 256"}
             color={"currentColor"}
           >
