@@ -26,7 +26,9 @@ import Loader from "../components/loader/Loader.astro";
 </Layout>
 
 <script>
-  const loaderContainer = document.querySelector(".loader-container");
+  const loaderContainer = document.querySelector(
+    ".loader-container",
+  ) as HTMLDivElement;
   const appContainer = document.getElementById("app-container");
 
   const heroSection = document.querySelector("section.hero-container");
@@ -40,6 +42,9 @@ import Loader from "../components/loader/Loader.astro";
 
     backgroundImage.addEventListener("load", () => {
       loaderContainer?.classList.add("loader-container-hide");
+      loaderContainer?.addEventListener("transitionend", () => {
+        loaderContainer?.classList.add("loader-container-hide-z-index");
+      });
       appContainer?.classList.remove("loading");
       appContainer?.classList.add("loaded");
     });
@@ -68,6 +73,9 @@ import Loader from "../components/loader/Loader.astro";
 
   .loader-container-hide {
     opacity: 0;
+  }
+
+  .loader-container-hide-z-index {
     z-index: -1;
   }
 </style>
