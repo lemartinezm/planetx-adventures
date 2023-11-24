@@ -35,7 +35,8 @@ export const campingSpotsData: CampingSpot[] = [
   },
 ];
 
-interface CardData {
+export interface CardData {
+  id: number;
   image: any;
   title: string;
   rating: number;
@@ -44,10 +45,18 @@ interface CardData {
   likes: string;
   price: string;
   priceUnit: string;
+  modalTitle: string;
+  packagesExample: Array<{
+    title: string;
+    activities: string[];
+    pricing: string;
+  }>;
+  videoLink: string;
 }
 
 export const cardsData: CardData[] = [
   {
+    id: 1,
     image: cardImage1,
     title: "Special Private Tour",
     rating: 4,
@@ -56,9 +65,50 @@ export const cardsData: CardData[] = [
     views: "1.8k",
     likes: "1.2k",
     price: "499.99",
-    priceUnit: "day",
+    priceUnit: "person",
+    modalTitle: "Special Private Tour",
+    packagesExample: [
+      {
+        title: "Standard Package - Explorer's Retreat",
+        activities: [
+          "Private Tent Accommodation",
+          "All Guided Tours and Activities",
+          "Welcome Lunch, Dinners, and Breakfasts",
+          "Stargazing Session",
+          "Galactic Picnic Lunch",
+          "Souvenir Package",
+        ],
+        pricing: "$499.99 per person",
+      },
+      {
+        title: "Deluxe Package - Celestial Bliss",
+        activities: [
+          "Premium Tent Accommodation with Celestial Views",
+          "All Standard Package Inclusions",
+          "Private Interplanetary Geology Expedition",
+          "Cosmic Culinary Class",
+          "Cosmic Spa Experience",
+          "Gourmet Galactic Dinner Upgrade",
+        ],
+        pricing: "$799.99 per person",
+      },
+      {
+        title: "Ultimate Package - Cosmic Voyager",
+        activities: [
+          "Luxury Tent Accommodation with Exclusive Amenities",
+          "All Deluxe Package Inclusions",
+          "Personalized Private Tour Itinerary",
+          "Additional Alien Flora Photography Workshop",
+          "Exclusive Astrological Consultation",
+          "VIP Shuttle Service",
+        ],
+        pricing: "$999.99 per person",
+      },
+    ],
+    videoLink: "https://www.youtube.com/embed/G1hKzCkywM8?si=dCXrbUp5NRSX1yYO",
   },
   {
+    id: 2,
     image: cardImage2,
     title: "Exclusive FrostPeaks Hike",
     rating: 5,
@@ -68,8 +118,37 @@ export const cardsData: CardData[] = [
     likes: "500",
     price: "899.99",
     priceUnit: "person",
+    modalTitle: "Exclusive FrostPeaks Hike",
+    packagesExample: [
+      {
+        title: "Included",
+        activities: [
+          "Guided Group Hike through FrostPeaks",
+          "Specialized FrostPeaks Exploration Gear",
+          "Hot Beverages and Snacks during the Hike",
+          "Professional Photography Service",
+          "Commemorative FrostPeaks Expedition Certificate",
+          "Group Lunch at Summit",
+          "Nature Walk Exploration Session",
+          "Group Reflection and Debrief Session",
+          "Experienced Guides and Safety Briefing",
+        ],
+        pricing: "$899.99 per person",
+      },
+      {
+        title: "Optional Upgrades",
+        activities: [
+          "Exclusive FrostPeaks Hike Video Package",
+          "FrostPeaks Hike Photography Package",
+        ],
+        pricing: "$49.99 per upgrade",
+      },
+    ],
+    videoLink:
+      "https://www.youtube-nocookie.com/embed/_RZm7E9E-CM?si=xFJV91yg6lG2WjrI",
   },
   {
+    id: 3,
     image: cardImage3,
     title: "Zero-Gravity Sports Fusion",
     rating: 4,
@@ -79,6 +158,31 @@ export const cardsData: CardData[] = [
     likes: "3.1k",
     price: "699.99",
     priceUnit: "person",
+    modalTitle: "Zero-Gravity Sports Fusion",
+    packagesExample: [
+      {
+        title: "Zero-Gravity Sports Fusion Session",
+        activities: [
+          "Registration and Orientation",
+          "Futuristic Basketball Session",
+          "Cosmic Soccer Game",
+          "Galactic Volleyball Match",
+          "Anti-Gravity Climbing Wall Challenge",
+          "Zero-Gravity Trampoline Experience",
+          "Zero-G Refreshment Break",
+          "Cosmic Achievements Ceremony with Certificates",
+          "Professional Instructors and Safety Equipment",
+        ],
+        pricing: "$699.99 per person",
+      },
+      {
+        title: "Optional Upgrades",
+        activities: ["Exclusive Zero-G Video Package", "Zero-G Photo Package"],
+        pricing: "$49.99 per upgrade",
+      },
+    ],
+    videoLink:
+      "https://www.youtube-nocookie.com/embed/wuog9_p_ycc?si=QmxTdHWkzz3zblTJ",
   },
 ];
 
