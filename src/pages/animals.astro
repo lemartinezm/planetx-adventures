@@ -3,6 +3,7 @@ import AnimalCard from "../components/card/AnimalCard.astro";
 import Footer from "../components/footer/Footer.astro";
 import Header from "../components/header/Header";
 import Loader from "../components/loader/Loader.astro";
+import SectionIndicator from "../components/sectionIndicator/SectionIndicator.astro";
 import Layout from "../layouts/Layout.astro";
 import { animals } from "../lib/animals";
 ---
@@ -17,12 +18,39 @@ import { animals } from "../lib/animals";
       <div class="animals-title-container">
         <h2 class="animals-title">Discover Animals</h2>
       </div>
-      <div class="animals-cards-container">
-        {
-          animals.map((animal) => (
-            <AnimalCard src={animal.src} alt={animal.alt} name={animal.name} />
-          ))
-        }
+      <div class="animals-box-container">
+        <div class="animals-description-container">
+          <h3 class="animals-description-title">Exotic Intergalactic Fauna</h3>
+          <p class="animals-description">
+            Welcome to the fascinating gallery of creatures you'll encounter at
+            our interplanetary camps. Explore the diversity of alien life
+            inhabiting the remote corners of distant planets. From curious
+            bioluminescent beings to majestic floating creatures, each species
+            is unique, inviting you to immerse yourself in a world beyond our
+            own.
+          </p>
+          <p class="animals-description">
+            Discover the wonders that await at our camps and get ready for an
+            unforgettable experience in the intergalactic wilderness. Welcome to
+            a universe of unique adventures and discoveries!
+          </p>
+        </div>
+        <div class="animals-cards-container">
+          {
+            animals.map((animal) => (
+              <AnimalCard
+                src={animal.src}
+                alt={animal.alt}
+                name={animal.name}
+              />
+            ))
+          }
+        </div>
+        <SectionIndicator
+          name="Discover Animals"
+          position="left"
+          color="var(--black-75)"
+        />
       </div>
     </main>
     <Footer />
@@ -99,10 +127,36 @@ import { animals } from "../lib/animals";
     font-weight: 500;
   }
 
+  .animals-box-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 25rem;
+    margin: 0 auto;
+  }
+
+  .animals-description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .animals-description-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  .animals-description {
+    font-size: 1rem;
+    color: var(--black);
+  }
+
   .animals-cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-    padding: 1rem;
     gap: 2rem;
   }
 
@@ -112,12 +166,19 @@ import { animals } from "../lib/animals";
   }
 
   @media screen and (min-width: 768px) {
+    .animals-box-container {
+      padding: 2rem 1rem;
+      gap: 2rem;
+    }
     .animals-title-container {
       min-height: 20rem;
     }
-    .animals-cards-container {
-      padding: 4rem;
-      gap: 4rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .animals-box-container {
+      padding: 2rem 8rem;
+      max-width: 1280px;
     }
   }
 </style>
