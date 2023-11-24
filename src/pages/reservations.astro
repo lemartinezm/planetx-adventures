@@ -2,68 +2,162 @@
 import Layout from "../layouts/Layout.astro";
 import Stepper from "../components/stepper/Stepper.astro";
 import Ticket from "../components/ticket/Ticket.astro";
+import Loader from "../components/loader/Loader.astro";
+import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer.astro";
+import SectionIndicator from "../components/sectionIndicator/SectionIndicator.astro";
+import { Image } from "astro:assets";
+import reservationImage from "../assets/reservation-image.jpg";
 ---
 
 <Layout title="Get Your Ticket | PlanetX Adventures">
-  <div class="reservation-background">
-    <main class="reservation-container">
-      <div class="reservation-box-container">
-        <a href="/" class="go-back-button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 256 256"
-            ><path
-              fill="currentColor"
-              d="M224 128a8 8 0 0 1-8 8H59.31l58.35 58.34a8 8 0 0 1-11.32 11.32l-72-72a8 8 0 0 1 0-11.32l72-72a8 8 0 0 1 11.32 11.32L59.31 120H216a8 8 0 0 1 8 8Z"
-            ></path>
-          </svg>
-          <span>Go Home</span>
-        </a>
+  <div class="loader-container">
+    <Loader />
+  </div>
+  <div id="app-container" class="loading">
+    <Header client:load />
+
+    <main>
+      <div class="reservation-title-container">
         <h2 class="reservation-title">Get Your Ticket</h2>
-        <Stepper />
       </div>
-      <div class="reservation-box-ticket">
-        <Ticket />
+      <div class="reservation-box-container">
+        <div class="reservation-description-container">
+          <h3 class="reservation-description-title">General Admission</h3>
+          <p class="reservation-description">
+            Embark on a cosmic adventure starting from March 2025!
+          </p>
+          <p class="reservation-description">
+            Our Stellar Exploration experience is open year-round for intrepid
+            space explorers. The admission price includes both the self-guided
+            trek through the camp, the spacewalk, and our various astronomical
+            presentations.
+          </p>
+          <strong>
+            Book your ticket now to secure your spot in this unique
+            extraterrestrial experience!
+          </strong>
+        </div>
+
+        <div class="reservation-ticket-container">
+          <Ticket />
+        </div>
+
+        <div class="reservation-container">
+          <Image
+            src={reservationImage}
+            alt="Landing zone in PlanetX"
+            width="576"
+            height="576"
+            class="reservation-stepper-image"
+          />
+          <Stepper />
+        </div>
+        <SectionIndicator
+          name="Get Your Tickets"
+          position="left"
+          color="var(--black-75)"
+        />
       </div>
     </main>
+    <Footer />
   </div>
 </Layout>
 
+<script>
+  const loaderContainer = document.querySelector(
+    ".loader-container",
+  ) as HTMLDivElement;
+  const appContainer = document.getElementById("app-container");
+
+  const heroSection = document.querySelector(".reservation-title-container");
+
+  if (heroSection) {
+    const backgroundImage = new Image();
+    backgroundImage.src = getComputedStyle(heroSection).backgroundImage.replace(
+      /url\((['"])?(.*?)\1\)/gi,
+      "$2",
+    );
+
+    backgroundImage.addEventListener("load", () => {
+      loaderContainer?.classList.add("loader-container-hide");
+      loaderContainer?.addEventListener("transitionend", () => {
+        loaderContainer?.classList.add("loader-container-hide-z-index");
+      });
+      appContainer?.classList.remove("loading");
+      appContainer?.classList.add("loaded");
+    });
+  }
+</script>
+
 <style>
-  .reservation-background {
+  .loaded {
+    display: block;
+  }
+
+  .loader-container {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--dark-blue);
+    display: grid;
+    place-items: center;
+    position: fixed;
+    z-index: 3;
+    transition: opacity 0.5s;
+  }
+
+  .loader-container-hide {
+    opacity: 0;
+  }
+
+  .loader-container-hide-z-index {
+    z-index: -1;
+  }
+
+  .reservation-title-container {
+    display: grid;
+    place-items: center;
     background-image: url("../assets/background-reservations.jpg");
-    background-size: cover;
+    min-height: 15rem;
+    background-position: bottom 100% left 50%;
     background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-size: cover;
   }
 
   .reservation-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     gap: 1rem;
-    margin: 1rem;
-    background: var(--dark-blue-transparent);
     border-radius: 2rem;
-    width: 100%;
-    max-width: 30rem;
-    padding: 2rem;
+  }
+
+  .reservation-description-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .reservation-description-title {
+    font-weight: 500;
+    font-size: 1.25rem;
+  }
+
+  .reservation-description {
+    font-size: 1rem;
+  }
+
+  .reservation-ticket-container {
+    display: none;
   }
 
   .reservation-box-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 25rem;
+    margin: 0 auto;
+    position: relative;
+    padding: 1rem;
+    display: grid;
     gap: 1rem;
-    width: 100%;
-    flex: 1;
   }
 
   .reservation-box-ticket {
@@ -84,16 +178,51 @@ import Ticket from "../components/ticket/Ticket.astro";
     color: var(--white);
   }
 
-  @media screen and (min-width: 1024px) {
-    .reservation-container {
-      flex-direction: row;
-      margin: 2rem;
-      max-width: 1280px;
+  .reservation-stepper-image {
+    object-fit: cover;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    .reservation-title-container {
+      min-height: 20rem;
+    }
+    .reservation-ticket-container {
+      display: block;
+    }
+
+    .reservation-box-container {
+      padding: 2rem 1rem;
       gap: 2rem;
     }
 
-    .reservation-box-ticket {
-      display: block;
+    .reservation-container {
+      gap: 2rem;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .reservation-container {
+      max-width: 1280px;
+      flex-direction: row;
+    }
+
+    .reservation-box-container {
+      max-width: 1280px;
+      padding: 2rem 8rem;
+    }
+
+    .reservation-ticket-container {
+      max-width: 60rem;
+      margin: auto;
+    }
+
+    .reservation-stepper-image {
+      min-height: 36rem;
+      width: auto;
+      overflow: hidden;
     }
   }
 </style>

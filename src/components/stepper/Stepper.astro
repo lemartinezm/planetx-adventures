@@ -3,28 +3,28 @@ import ReservationForm from "../reservationForm/ReservationForm.astro";
 import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
 ---
 
-<div class="stepper-container">
-  <div class="stepper-item stepper-item-active">
-    <div class="stepper-line"></div>
-    <div class="stepper-title">Travel info</div>
+<section class="stepper-section-container">
+  <h3 class="form-title">Make Your Reservation</h3>
+
+  <div class="stepper-container">
+    <div class="stepper-item stepper-item-active">
+      <div class="stepper-line"></div>
+      <div class="stepper-title">Travel info</div>
+    </div>
+
+    <div class="stepper-item">
+      <div class="stepper-line"></div>
+      <div class="stepper-title">Seat selection</div>
+    </div>
   </div>
 
-  <div class="stepper-item">
-    <div class="stepper-line"></div>
-    <div class="stepper-title">Seat selection</div>
+  <div class="step-content step-1 step-active">
+    <ReservationForm />
   </div>
-</div>
-
-<div class="step-content step-1 step-active">
-  <ReservationForm />
-</div>
-<div class="step-content step-2">
-  <SeatsSelection />
-  <button id="generate-ticket-button" class="button button-primary">
-    Generate Ticket
-  </button>
-  <a id="back-step-button" class="button">Back</a>
-</div>
+  <div class="step-content step-2">
+    <SeatsSelection />
+  </div>
+</section>
 
 <script>
   const steps = document.querySelectorAll(".step-content");
@@ -84,12 +84,24 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
 </script>
 
 <style>
+  .stepper-section-container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .form-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
   .stepper-container {
     color: var(--white);
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 0.5rem;
+    width: 100%;
   }
 
   .stepper-item {
@@ -108,7 +120,7 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
   }
 
   .stepper-item-active {
-    color: var(--light-blue);
+    color: var(--black);
   }
 
   .step-content {
@@ -146,5 +158,11 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
     color: var(--black);
     font-weight: 500;
     border: none;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .stepper-section-container {
+      padding: 2rem 0;
+    }
   }
 </style>
