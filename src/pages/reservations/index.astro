@@ -1,13 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Stepper from "../components/stepper/Stepper.astro";
-import Ticket from "../components/ticket/Ticket.astro";
-import Loader from "../components/loader/Loader.astro";
-import Header from "../components/header/Header";
-import Footer from "../components/footer/Footer.astro";
-import SectionIndicator from "../components/sectionIndicator/SectionIndicator.astro";
+import Layout from "../../layouts/Layout.astro";
+import Stepper from "../../components/stepper/Stepper.astro";
+import Ticket from "../../components/ticket/Ticket.astro";
+import Loader from "../../components/loader/Loader.astro";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer.astro";
+import SectionIndicator from "../../components/sectionIndicator/SectionIndicator.astro";
 import { Image } from "astro:assets";
-import reservationImage from "../assets/reservation-image.jpg";
+import reservationImage from "../../assets/reservation-image.jpg";
 ---
 
 <Layout title="Get Your Ticket | PlanetX Adventures">
@@ -117,7 +117,7 @@ import reservationImage from "../assets/reservation-image.jpg";
   .reservation-title-container {
     display: grid;
     place-items: center;
-    background-image: url("../assets/background-reservations.jpg");
+    background-image: url("../../assets/background-reservations.jpg");
     min-height: 15rem;
     background-position: bottom 100% left 50%;
     background-repeat: no-repeat;
