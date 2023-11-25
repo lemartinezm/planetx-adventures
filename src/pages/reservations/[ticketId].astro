@@ -21,7 +21,7 @@ const parsedReservationDate = new Date(reservationDate).toLocaleDateString(
 );
 
 const seatWindow =
-  seatCode.includes("1") || seatCode.includes("4") ? "Yes" : "No";
+  seatCode?.includes("1") || seatCode?.includes("4") ? "Yes" : "No";
 ---
 
 <Layout title="My Ticket | PlanetX Adventures">
