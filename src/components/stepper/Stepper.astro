@@ -32,6 +32,9 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
   const backButton = document.getElementById("back-step-button");
   const travelInfoForm = document.getElementById("travel-info-form");
   const seatsSelectionForm = document.getElementById("seats-selection-form");
+  const sendingLoaderContainer = document.querySelector(
+    ".sending-loader-container",
+  );
 
   let currentStep = getStepQueryParams();
   changeStep(currentStep);
@@ -66,6 +69,7 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
     const isValid = target.checkValidity();
 
     if (isValid) {
+      sendingLoaderContainer?.classList.add("sending-loader-active");
       const formData = new FormData(target);
 
       const seatSelected = formData.get("seat");
@@ -99,9 +103,13 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
           .then((response) => {
             alert("Ticket created successfully");
             window.location.assign(`/reservations/${response.id}`);
+            // TODO: agregar un toastify?
           })
           .catch(() => {
             alert("Ticket could not be created");
+          })
+          .finally(() => {
+            sendingLoaderContainer?.classList.remove("sending-loader-active");
           });
       }
     }

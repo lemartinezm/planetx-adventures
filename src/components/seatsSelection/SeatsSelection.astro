@@ -1,5 +1,6 @@
 ---
 import { seatsList } from "../../lib/data";
+import Sending from "../loader/Sending.astro";
 const seatsLeftSide = seatsList.slice(0, seatsList.length / 2);
 const seatsRightSide = seatsList.slice(seatsList.length / 2);
 ---
@@ -77,13 +78,16 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
     </div>
   </div>
 
-  <div>
+  <div class="buttons-container">
     <button
       id="generate-ticket-button"
       class="button button-primary"
       type="submit"
     >
-      Generate Ticket
+      <div class="sending-loader-container">
+        <Sending />
+      </div>
+      <span class="generate-ticket-button-text">Generate Ticket</span>
     </button>
     <a id="back-step-button" class="button">Back</a>
   </div>
@@ -188,5 +192,35 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
     color: var(--white);
     font-weight: 500;
     border: none;
+  }
+
+  .buttons-container {
+    display: flex;
+    gap: 1rem;
+  }
+
+  #generate-ticket-button {
+    position: relative;
+  }
+
+  .sending-loader-container {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .generate-ticket-button-text {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+  .sending-loader-active {
+    opacity: 1;
+  }
+
+  .sending-loader-active ~ .generate-ticket-button-text {
+    opacity: 0;
   }
 </style>
