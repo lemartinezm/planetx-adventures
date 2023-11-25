@@ -114,6 +114,15 @@ const { cardData } = Astro.props;
       dialogs[index].close();
     });
   });
+
+  dialogs.forEach((dialog) => {
+    dialog.addEventListener("click", (event) => {
+      const target = event.target as HTMLDialogElement;
+      if (!target.closest(".event-modal")) {
+        target.close();
+      }
+    });
+  });
 </script>
 
 <style>
