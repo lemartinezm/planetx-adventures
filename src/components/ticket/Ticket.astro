@@ -1,6 +1,26 @@
 ---
 import { Image } from "astro:assets";
 import logoPlanetX from "../../assets/logo-planetx.png";
+
+interface Props {
+  id?: number;
+  ticketName?: string;
+  reservationDate?: string;
+  seatCode?: string;
+  seatWindow?: string;
+  travelFrom?: string;
+  travelTo?: string;
+}
+
+const {
+  id = 1,
+  ticketName = "Marty McFly",
+  reservationDate = "26th October",
+  seatCode = "A1",
+  travelFrom = "ETH LI 101",
+  travelTo = "PLX FP 102",
+  seatWindow = "Yes",
+} = Astro.props;
 ---
 
 <!-- main Atropos container (required), add your custom class here -->
@@ -30,7 +50,7 @@ import logoPlanetX from "../../assets/logo-planetx.png";
             <div class="ticket-body-name-container">
               <div class="ticket-name-container">
                 <div class="ticket-name-label ticket-label">Name</div>
-                <div class="ticket-data ticket-data-md">Marty McFly</div>
+                <div class="ticket-data ticket-data-md">{ticketName}</div>
               </div>
               <div class="ticket-grid-group-3">
                 <div>
@@ -43,7 +63,7 @@ import logoPlanetX from "../../assets/logo-planetx.png";
                 </div>
                 <div>
                   <div class="ticket-label">Departure Date</div>
-                  <div class="ticket-data">26th October</div>
+                  <div class="ticket-data">{reservationDate}</div>
                 </div>
                 <div>
                   <div class="ticket-label">Gate</div>
@@ -64,19 +84,21 @@ import logoPlanetX from "../../assets/logo-planetx.png";
               <div class="ticket-grid-group-2">
                 <div>
                   <div class="ticket-label">Seat</div>
-                  <div class="ticket-data ticket-data-md">A14</div>
+                  <div class="ticket-data ticket-data-md">{seatCode}</div>
                 </div>
                 <div>
                   <div class="ticket-label">Window</div>
-                  <div class="ticket-data ticket-data-md">No</div>
+                  <div class="ticket-data ticket-data-md">
+                    {seatWindow}
+                  </div>
                 </div>
                 <div>
                   <div class="ticket-label">From</div>
-                  <div class="ticket-data">ETH JK 101</div>
+                  <div class="ticket-data">{travelFrom}</div>
                 </div>
                 <div>
                   <div class="ticket-label ticket-to-label">To</div>
-                  <div class="ticket-data ticket-to">PLX FP 102</div>
+                  <div class="ticket-data ticket-to">{travelTo}</div>
                 </div>
                 <div>
                   <div class="ticket-label">Departing Time</div>
@@ -84,7 +106,7 @@ import logoPlanetX from "../../assets/logo-planetx.png";
                 </div>
                 <div>
                   <div class="ticket-label">Luggage Code</div>
-                  <div class="ticket-data">1456</div>
+                  <div class="ticket-data">{id}</div>
                 </div>
               </div>
             </div>
@@ -110,14 +132,9 @@ import logoPlanetX from "../../assets/logo-planetx.png";
 
   const qrCanvas = document.getElementById("qr-canvas");
 
-  QRCode.toCanvas(
-    qrCanvas,
-    "https://timeless-brews.vercel.app",
-    function (error) {
-      if (error) console.error(error);
-      console.log("success!");
-    },
-  );
+  QRCode.toCanvas(qrCanvas, window.location.href, function (error) {
+    if (error) console.error("Error generating QR");
+  });
 </script>
 
 <style>

@@ -4,7 +4,7 @@ const seatsLeftSide = seatsList.slice(0, seatsList.length / 2);
 const seatsRightSide = seatsList.slice(seatsList.length / 2);
 ---
 
-<form class="seats-selection-form">
+<form class="seats-selection-form" id="seats-selection-form">
   <div class="spaceship">
     <div class="cockpit">Rocket</div>
 
@@ -24,6 +24,9 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
                 type="radio"
                 name="seat"
                 id={seat.code}
+                required
+                value={seat.code}
+                hidden
               />
               <svg
                 class="seat-svg"
@@ -51,6 +54,9 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
                 type="radio"
                 name="seat"
                 id={seat.code}
+                required
+                value={seat.code}
+                hidden
               />
               <svg
                 class="seat-svg"
@@ -72,7 +78,11 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
   </div>
 
   <div>
-    <button id="generate-ticket-button" class="button button-primary">
+    <button
+      id="generate-ticket-button"
+      class="button button-primary"
+      type="submit"
+    >
       Generate Ticket
     </button>
     <a id="back-step-button" class="button">Back</a>
