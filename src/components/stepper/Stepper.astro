@@ -31,6 +31,7 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
   const stepperItems = document.querySelectorAll(".stepper-item");
   const backButton = document.getElementById("back-step-button");
   const travelInfoForm = document.getElementById("travel-info-form");
+  const seatsSelectionForm = document.getElementById("seats-selection-form");
 
   let currentStep = getStepQueryParams();
   changeStep(currentStep);
@@ -39,7 +40,71 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const isValid = target.checkValidity();
-    if (isValid) nextStep();
+
+    if (isValid) {
+      const formData = new FormData(target);
+
+      const data = {
+        name: formData.get("name") as string,
+        reservationDate: formData.get("reservation-date") as string,
+        travelFrom: formData.get("travel-from") as string,
+        travelTo: formData.get("travel-to") as string,
+      };
+
+      sessionStorage.setItem("name", data.name);
+      sessionStorage.setItem("reservationDate", data.reservationDate);
+      sessionStorage.setItem("travelFrom", data.travelFrom);
+      sessionStorage.setItem("travelTo", data.travelTo);
+
+      nextStep();
+    }
+  });
+
+  seatsSelectionForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const target = event.target as HTMLFormElement;
+    const isValid = target.checkValidity();
+
+    if (isValid) {
+      const formData = new FormData(target);
+
+      const seatSelected = formData.get("seat");
+      const name = sessionStorage.getItem("name");
+      const reservationDate = sessionStorage.getItem("reservationDate");
+      const travelFrom = sessionStorage.getItem("travelFrom");
+      const travelTo = sessionStorage.getItem("travelTo");
+
+      if (name && reservationDate && seatSelected && travelFrom && travelTo) {
+        const parsedDate = new Date(reservationDate).getTime();
+
+        const data = {
+          name,
+          reservationDate: parsedDate,
+          seatCode: seatSelected,
+          travelFrom,
+          travelTo,
+        };
+
+        fetch(`${import.meta.env.PUBLIC_API_URL}/tickets`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error("Something went wrong");
+            return response.json();
+          })
+          .then((response) => {
+            alert("Ticket created successfully");
+            window.location.assign(`/tickets/${response.id}`);
+          })
+          .catch(() => {
+            alert("Ticket could not be created");
+          });
+      }
+    }
   });
 
   backButton?.addEventListener("click", () => {
