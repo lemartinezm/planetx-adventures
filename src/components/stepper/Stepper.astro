@@ -98,7 +98,7 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
           })
           .then((response) => {
             alert("Ticket created successfully");
-            window.location.assign(`/tickets/${response.id}`);
+            window.location.assign(`/reservations/${response.id}`);
           })
           .catch(() => {
             alert("Ticket could not be created");
