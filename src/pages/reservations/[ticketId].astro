@@ -7,7 +7,6 @@ const API_URL = import.meta.env.PUBLIC_API_URL;
 const { ticketId } = Astro.params;
 
 const response = await fetch(`${API_URL}/tickets/${ticketId}`);
-const ticketFound = response.ok;
 const ticketData = await response.json();
 const { id, name, reservationDate, seatCode, travelFrom, travelTo } =
   ticketData;
@@ -27,7 +26,7 @@ const seatWindow =
 
 <Layout title="My Ticket | PlanetX Adventures">
   {
-    ticketFound ? (
+    ticketData?.name ? (
       <main class="my-ticket-container">
         <Ticket
           id={id}
