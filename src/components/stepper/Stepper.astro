@@ -27,11 +27,21 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
 </section>
 
 <script>
+  import Toastify from "toastify-js";
+  import "toastify-js/src/toastify.css";
+
   const steps = document.querySelectorAll(".step-content");
   const stepperItems = document.querySelectorAll(".stepper-item");
   const backButton = document.getElementById("back-step-button");
-  const travelInfoForm = document.getElementById("travel-info-form");
-  const seatsSelectionForm = document.getElementById("seats-selection-form");
+  const travelInfoForm = document.getElementById(
+    "travel-info-form",
+  ) as HTMLFormElement;
+  const seatsSelectionForm = document.getElementById(
+    "seats-selection-form",
+  ) as HTMLFormElement;
+  const sendingLoaderContainer = document.querySelector(
+    ".sending-loader-container",
+  );
 
   let currentStep = getStepQueryParams();
   changeStep(currentStep);
@@ -75,6 +85,7 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
       const travelTo = sessionStorage.getItem("travelTo");
 
       if (name && reservationDate && seatSelected && travelFrom && travelTo) {
+        sendingLoaderContainer?.classList.add("sending-loader-active");
         const parsedDate = new Date(reservationDate).getTime();
 
         const data = {
@@ -97,11 +108,39 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
             return response.json();
           })
           .then((response) => {
-            alert("Ticket created successfully");
-            window.location.assign(`/reservations/${response.id}`);
+            // Clear data and forms
+            sessionStorage.clear();
+            travelInfoForm.reset();
+            seatsSelectionForm.reset();
+
+            Toastify({
+              text: "Ticket created successfully. Click here to view your ticket.",
+              destination: "/reservations/" + response.id,
+              close: true,
+              gravity: "bottom",
+              position: "center",
+              style: {
+                background: "none",
+                backgroundColor: "var(--success)",
+              },
+              duration: 8000,
+            }).showToast();
           })
           .catch(() => {
-            alert("Ticket could not be created");
+            Toastify({
+              text: "Ticket couldn't be created",
+              close: true,
+              gravity: "bottom",
+              position: "center",
+              style: {
+                background: "none",
+                backgroundColor: "var(--error)",
+              },
+              duration: 8000,
+            }).showToast();
+          })
+          .finally(() => {
+            sendingLoaderContainer?.classList.remove("sending-loader-active");
           });
       }
     }
@@ -223,6 +262,10 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
     color: var(--black);
     font-weight: 500;
     border: none;
+  }
+
+  .toast-error {
+    background-color: red;
   }
 
   @media screen and (min-width: 1024px) {

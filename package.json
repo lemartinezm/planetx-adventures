@@ -21,11 +21,13 @@
     "qrcode": "^1.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "toastify-js": "^1.12.0",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.7",
     "@types/qrcode": "^1.5.5",
+    "@types/toastify-js": "^1.12.3",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.1"
   }
