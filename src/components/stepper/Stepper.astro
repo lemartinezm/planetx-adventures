@@ -33,8 +33,12 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
   const steps = document.querySelectorAll(".step-content");
   const stepperItems = document.querySelectorAll(".stepper-item");
   const backButton = document.getElementById("back-step-button");
-  const travelInfoForm = document.getElementById("travel-info-form");
-  const seatsSelectionForm = document.getElementById("seats-selection-form");
+  const travelInfoForm = document.getElementById(
+    "travel-info-form",
+  ) as HTMLFormElement;
+  const seatsSelectionForm = document.getElementById(
+    "seats-selection-form",
+  ) as HTMLFormElement;
   const sendingLoaderContainer = document.querySelector(
     ".sending-loader-container",
   );
@@ -104,7 +108,11 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
             return response.json();
           })
           .then((response) => {
-            console.log(response.id);
+            // Clear data and forms
+            sessionStorage.clear();
+            travelInfoForm.reset();
+            seatsSelectionForm.reset();
+
             Toastify({
               text: "Ticket created successfully. Click here to view your ticket.",
               destination: "/reservations/" + response.id,
@@ -114,9 +122,8 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
               style: {
                 background: "none",
                 backgroundColor: "var(--success)",
-                margin: "0 1rem",
               },
-              duration: 3000,
+              duration: 8000,
             }).showToast();
           })
           .catch(() => {
@@ -128,9 +135,8 @@ import SeatsSelection from "../seatsSelection/SeatsSelection.astro";
               style: {
                 background: "none",
                 backgroundColor: "var(--error)",
-                margin: "0 1rem",
               },
-              duration: 3000,
+              duration: 8000,
             }).showToast();
           })
           .finally(() => {
