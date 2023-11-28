@@ -84,43 +84,6 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
       </div>
     </article>
 
-    <div class="discover-next-container">
-      <p class="discover-next-text">Why We're Special?</p>
-
-      <a
-        href="#visit-info"
-        class="discover-next-button"
-        aria-label="View visit info"
-      >
-        <svg
-          class="discover-next-button-arrow"
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 256 256"
-          color="currentColor"
-          ><path
-            fill="currentColor"
-            d="m205.66 149.66l-72 72a8 8 0 0 1-11.32 0l-72-72a8 8 0 0 1 11.32-11.32L120 196.69V40a8 8 0 0 1 16 0v156.69l58.34-58.35a8 8 0 0 1 11.32 11.32Z"
-          ></path></svg
-        >
-        <!-- dashed border -->
-        <svg
-          class="discover-next-button-border"
-          width="96"
-          height="96"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M48 48 m-42,0 a42,42 0 1,0 84,0 a42,42 0 1,0 -84,0"
-            fill="transparent"
-            stroke="currentColor"
-            stroke-width="1"
-            stroke-dasharray="10,10"></path>
-        </svg>
-      </a>
-    </div>
-
     <SectionIndicator name="Explore Extraterrestrial Wonders" position="left" />
   </div>
 </div>
@@ -181,7 +144,6 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
   .discover-button:hover {
     background-color: var(--white);
     color: var(--black);
-    box-shadow: 0 0 8px 1px var(--white);
   }
 
   .discover-image-container {
@@ -266,54 +228,6 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
     margin-top: 0.5rem;
   }
 
-  .discover-next-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .discover-next-text {
-    color: var(--white);
-  }
-
-  .discover-next-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    border-radius: 50%;
-    height: 6rem;
-    width: 6rem;
-    color: var(--white);
-    opacity: 0.5;
-    transition: opacity 0.3s;
-    cursor: pointer;
-  }
-
-  .discover-next-button:hover {
-    opacity: 1;
-  }
-
-  .discover-next-button:hover .discover-next-button-arrow {
-    animation-play-state: paused;
-  }
-
-  .discover-next-button-arrow {
-    animation-name: bounce;
-    animation-duration: 0.75s;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease;
-  }
-
-  .discover-next-button-border {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-
   @media screen and (min-width: 1024px) {
     .discover-wildlife-background {
       background-color: var(--brown);
@@ -344,20 +258,6 @@ import SectionIndicator from "../sectionIndicator/SectionIndicator.astro";
       flex-direction: row;
       max-width: 40rem;
       margin: 0 auto;
-    }
-
-    .discover-next-container {
-      grid-column-start: 1;
-      grid-column-end: 3;
-    }
-  }
-
-  @keyframes bounce {
-    from {
-      transform: translateY(0);
-    }
-    to {
-      transform: translateY(-0.25rem);
     }
   }
 </style>
