@@ -27,7 +27,6 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
                 id={seat.code}
                 required
                 value={seat.code}
-                hidden
               />
               <svg
                 class="seat-svg"
@@ -57,7 +56,6 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
                 id={seat.code}
                 required
                 value={seat.code}
-                hidden
               />
               <svg
                 class="seat-svg"
@@ -83,6 +81,7 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
       id="generate-ticket-button"
       class="button button-primary"
       type="submit"
+      disabled
     >
       <div class="sending-loader-container">
         <Sending />
@@ -92,6 +91,22 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
     <a id="back-step-button" class="button">Back</a>
   </div>
 </form>
+
+<script>
+  const seatsSelectionForm = document.getElementById(
+    "seats-selection-form",
+  ) as HTMLFormElement;
+  const generateTicketButton = document.getElementById(
+    "generate-ticket-button",
+  ) as HTMLButtonElement;
+
+  seatsSelectionForm.addEventListener("input", (event) => {
+    const currentTarget = event.currentTarget as HTMLFormElement;
+    const formIsValid = currentTarget.checkValidity();
+    if (formIsValid) generateTicketButton.disabled = false;
+    else generateTicketButton.disabled = true;
+  });
+</script>
 
 <style>
   .seats-selection-form {
@@ -155,7 +170,8 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
   }
 
   .seat-input-radio {
-    display: none;
+    position: absolute;
+    opacity: 0;
   }
 
   .seat-svg {
@@ -168,8 +184,11 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
   }
 
   .seat-selector {
-    justify-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
+    position: relative;
   }
 
   .seat-selector:hover .seat-svg {
@@ -211,6 +230,18 @@ const seatsRightSide = seatsList.slice(seatsList.length / 2);
     background-color: var(--white);
     box-shadow: 0 0 1px 1px var(--black);
     color: var(--black);
+  }
+
+  .button-primary:disabled {
+    opacity: 0.75;
+    background-color: var(--black-50);
+  }
+
+  .button-primary:disabled:hover {
+    background-color: var(--black-50);
+    box-shadow: none;
+    color: var(--white);
+    cursor: not-allowed;
   }
 
   .buttons-container {
