@@ -110,8 +110,6 @@ const seatWindow =
   const loaderContainer = document.querySelector(
     ".loader-container",
   ) as HTMLDivElement;
-  const appContainer = document.getElementById("app-container");
-
   const ticketContainer = document.querySelector(".my-ticket-container");
 
   if (ticketContainer) {
@@ -125,9 +123,10 @@ const seatWindow =
       loaderContainer?.addEventListener("transitionend", () => {
         loaderContainer?.classList.add("loader-container-hide-z-index");
       });
-      appContainer?.classList.remove("loading");
-      appContainer?.classList.add("loaded");
     });
+  } else {
+    loaderContainer?.classList.add("loader-container-hide");
+    loaderContainer?.classList.add("loader-container-hide-z-index");
   }
 </script>
 

@@ -131,10 +131,11 @@ const {
   });
 
   const qrCanvas = document.getElementById("qr-canvas");
-
-  QRCode.toCanvas(qrCanvas, window.location.href, function (error) {
-    if (error) console.error("Error generating QR");
-  });
+  if (qrCanvas) {
+    QRCode.toCanvas(qrCanvas, window.location.href, function (error) {
+      if (error) console.error("Error generating QR");
+    });
+  }
 </script>
 
 <style>
