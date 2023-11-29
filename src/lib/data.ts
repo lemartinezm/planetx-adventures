@@ -105,7 +105,7 @@ export const cardsData: CardData[] = [
         pricing: "$999.99 per person",
       },
     ],
-    videoLink: "https://www.youtube.com/embed/G1hKzCkywM8?si=dCXrbUp5NRSX1yYO",
+    videoLink: "G1hKzCkywM8",
   },
   {
     id: 2,
@@ -144,8 +144,7 @@ export const cardsData: CardData[] = [
         pricing: "$49.99 per upgrade",
       },
     ],
-    videoLink:
-      "https://www.youtube-nocookie.com/embed/_RZm7E9E-CM?si=xFJV91yg6lG2WjrI",
+    videoLink: "_RZm7E9E-CM",
   },
   {
     id: 3,
@@ -181,8 +180,7 @@ export const cardsData: CardData[] = [
         pricing: "$49.99 per upgrade",
       },
     ],
-    videoLink:
-      "https://www.youtube-nocookie.com/embed/wuog9_p_ycc?si=QmxTdHWkzz3zblTJ",
+    videoLink: "wuog9_p_ycc",
   },
 ];
 

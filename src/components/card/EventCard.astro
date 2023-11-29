@@ -54,15 +54,9 @@ const { cardData } = Astro.props;
       </button>
       <h4 class="event-modal-title">{cardData.modalTitle}</h4>
 
-      <iframe
-        class="event-modal-video"
-        width="480"
-        height="360"
-        src={cardData.videoLink}
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
+      <lite-youtube
+        videoid={cardData.videoLink}
+        playlabel="Play: Keynote (Google I/O '18)"></lite-youtube>
 
       <div class="event-modal-packages-container">
         <p class="event-modal-packages-title">
@@ -93,6 +87,9 @@ const { cardData } = Astro.props;
 </article>
 
 <script>
+  import "lite-youtube-embed";
+  import "../../../node_modules/lite-youtube-embed/src/lite-yt-embed.css";
+
   const buttons = document.querySelectorAll(
     ".event-card-button",
   ) as NodeListOf<HTMLButtonElement>;
