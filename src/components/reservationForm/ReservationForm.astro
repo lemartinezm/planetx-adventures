@@ -5,7 +5,17 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
 <form class="reservation-form" id="travel-info-form">
   <div class="form-input-container">
     <label class="form-label" for="name">Name</label>
-    <input class="form-input" type="text" name="name" id="name" required />
+    <input
+      class="form-input"
+      type="text"
+      name="name"
+      id="name"
+      required
+      minlength="4"
+      maxlength="45"
+      pattern="^[a-zA-Z' ]+$"
+    />
+    <span class="error-message"></span>
   </div>
   <div class="form-input-container">
     <label class="form-label" for="reservation-date">Date of Departure</label>
@@ -15,8 +25,10 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
       name="reservation-date"
       id="reservation-date"
       min="2025-03-01"
+      max="2030-03-01"
       required
     />
+    <span class="error-message"></span>
   </div>
   <div class="form-input-container">
     <label class="form-label" for="travel-to">Camp</label>
@@ -27,6 +39,7 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
         ))
       }
     </select>
+    <span class="error-message"></span>
   </div>
   <div class="form-input-container">
     <label class="form-label" for="travel-from">From</label>
@@ -37,12 +50,68 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
         ))
       }
     </select>
+    <span class="error-message"></span>
   </div>
 
-  <button id="next-step-button" class="button button-primary" type="submit">
+  <button
+    id="next-step-button"
+    class="button button-primary"
+    type="submit"
+    disabled
+  >
     Next Step
   </button>
 </form>
+
+<script>
+  import { formErrors, type GenericErrors } from "../../lib/errors";
+
+  const form = document.getElementById("travel-info-form") as HTMLFormElement;
+  const nextStepButton = document.getElementById(
+    "next-step-button",
+  ) as HTMLButtonElement;
+
+  form.addEventListener("input", (event) => {
+    // Form validation
+    const currentTarget = event.currentTarget as HTMLFormElement;
+    const formIsValid = currentTarget.checkValidity();
+    if (formIsValid) nextStepButton.disabled = false;
+    else nextStepButton.disabled = true;
+
+    // Input validation
+    const targetElement = event.target as HTMLInputElement;
+    const targetName = targetElement.name;
+    const errors = formErrors[targetName];
+    const inputIsValid = targetElement.validity.valid;
+    const errorElement = targetElement.nextElementSibling;
+    const errorType = getErrorType(targetElement.validity);
+    const errorMessage = errors[errorType as keyof GenericErrors];
+
+    if (inputIsValid) {
+      errorElement?.classList.remove("error-show");
+      targetElement.classList.remove("invalid");
+    } else {
+      if (errorElement) errorElement.innerHTML = errorMessage;
+      errorElement?.classList.add("error-show");
+      targetElement.classList.add("invalid");
+    }
+  });
+
+  function getErrorType(errorObject: any) {
+    if (errorObject.badInput) return "badInput";
+    if (errorObject.customError) return "customError";
+    if (errorObject.patternMismatch) return "patternMismatch";
+    if (errorObject.rangeOverflow) return "rangeOverflow";
+    if (errorObject.rangeUnderflow) return "rangeUnderflow";
+    if (errorObject.stepMismatch) return "stepMismatch";
+    if (errorObject.tooLong) return "tooLong";
+    if (errorObject.tooShort) return "tooShort";
+    if (errorObject.typeMismatch) return "typeMismatch";
+    if (errorObject.valid) return "valid";
+    if (errorObject.valueMissing) return "valueMissing";
+    return "noError";
+  }
+</script>
 
 <style>
   .reservation-title {
@@ -77,6 +146,43 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
     padding: 0.5rem 1rem;
     font-size: 1rem;
     color: var(--black);
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s;
+  }
+
+  .form-input.invalid {
+    border-color: var(--error);
+    box-shadow: 0 0 1px 1px var(--error);
+  }
+
+  .form-input:focus,
+  .form-input:focus-visible {
+    border-color: var(--black);
+    box-shadow: 0 0 1px 1px var(--black);
+    outline: none;
+  }
+
+  .form-input:hover {
+    border-color: var(--black);
+  }
+
+  .error-message {
+    color: var(--error);
+    font-weight: 500;
+    font-size: 0.75rem;
+    opacity: 0;
+    transition-property: opacity, margin-top;
+    transition-duration: 0.2s;
+    transition-behavior: allow-discrete;
+    max-height: 0;
+    margin-top: -0.5rem;
+  }
+
+  .error-show {
+    margin-top: 0;
+    max-height: 5rem;
+    opacity: 1;
   }
 
   .button {
@@ -106,6 +212,18 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
     background-color: var(--white);
     box-shadow: 0 0 1px 1px var(--black);
     color: var(--black);
+  }
+
+  .button-primary:disabled {
+    opacity: 0.75;
+    background-color: var(--black-50);
+  }
+
+  .button-primary:disabled:hover {
+    background-color: var(--black-50);
+    box-shadow: none;
+    color: var(--white);
+    cursor: not-allowed;
   }
 
   #next-step-button {
