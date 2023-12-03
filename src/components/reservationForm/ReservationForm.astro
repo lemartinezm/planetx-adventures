@@ -18,7 +18,7 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
     <span class="error-message"></span>
   </div>
   <div class="form-input-container">
-    <label class="form-label" for="reservation-date">Date of Departure</label>
+    <label class="form-label" for="reservation-date">Departure Date</label>
     <input
       class="form-input"
       type="date"
@@ -137,6 +137,8 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
 
   .form-label {
     color: var(--black);
+    font-weight: 500;
+    font-size: 0.8rem;
   }
 
   .form-input {
@@ -183,6 +185,13 @@ import { travelFrom, campingSpotsData } from "../../lib/data";
     margin-top: 0;
     max-height: 5rem;
     opacity: 1;
+  }
+
+  select.form-input {
+    appearance: none;
+    background-image: url("../../assets/arrow-down.svg");
+    background-repeat: no-repeat;
+    background-position: right 0.6rem center;
   }
 
   .button {
